@@ -1,0 +1,170 @@
+"""Deterministic tests for the radar plumbing.
+
+Philosophy: the LLM only writes runs/<date>/*.json; these tests pin down everything
+after that point, so swapping to a cheaper model can't corrupt the system of record.
+The Tanderrum fixture is the regression: a low-footprint, adjacent-vocabulary company
+must merge cleanly once the model emits it.
+"""
+import csv
+import json
+import subprocess
+import sys
+from datetime import date
+from pathlib import Path
+
+REPO = Path(__file__).resolve().parents[1]
+FIXTURES = Path(__file__).resolve().parent / "fixtures"
+
+SEED_REGISTRY = (
+    "domain,name,tier,cluster,status,stage,hq,founded,first_seen,last_checked,"
+    "what,why_tier,evidence_url,notes\n"
+    'glean.com,Glean,1,direct,active,series-f,"Palo Alto, US",2019,2026-06-10,2026-06-10,'
+    '"Enterprise search leader","Category leader",https://glean.com/,\n'
+    'zenlytic.com,Zenlytic,2,data-intel,active,series-a,"US",2021,2026-06-10,2026-06-10,'
+    '"AI data analyst","Warehouse-bound",https://zenlytic.com/,\n'
+)
+
+SEED_LANDSCAPE = (
+    "# Landscape\n\n**Last scan:** 2026-06-10 (baseline)\n\n## Changelog\n\n"
+    "### 2026-06-10 — Baseline established\nSeed.\n"
+)
+
+SEED_QUERIES = (
+    "# Queries\n\n## Block A: self\n- q1\n\n## Block B: data\n- q2\n\n"
+    "## Block F: lookalike\n- q3\n\n## Block G: funding\n- q4\n"
+)
+
+
+def make_repo(tmp_path: Path) -> Path:
+    root = tmp_path / "repo"
+    (root / "data").mkdir(parents=True)
+    (root / "config").mkdir()
+    (root / "data/registry.csv").write_text(SEED_REGISTRY, encoding="utf-8")
+    (root / "data/LANDSCAPE.md").write_text(SEED_LANDSCAPE, encoding="utf-8")
+    (root / "data/SCANLOG.md").write_text("# Scan Log\n", encoding="utf-8")
+    (root / "data/state.json").write_text(json.dumps({
+        "schema": 1, "block_cursor": 0, "status_cursor": 0,
+        "status_batch": 8, "emphasis_per_run": 2,
+        "last_run": "2026-06-10", "last_runner": "baseline",
+    }), encoding="utf-8")
+    (root / "config/queries.md").write_text(SEED_QUERIES, encoding="utf-8")
+    return root
+
+
+def run_script(script: str, *args):
+    return subprocess.run(
+        [sys.executable, str(REPO / "scripts" / script), *args],
+        capture_output=True, text=True,
+    )
+
+
+def write_run(root: Path, candidates=None, updates=None, meta=None, day="2026-06-15"):
+    run_dir = root / "runs" / day
+    run_dir.mkdir(parents=True, exist_ok=True)
+    if candidates is not None:
+        (run_dir / "candidates.json").write_text(json.dumps(candidates), encoding="utf-8")
+    if updates is not None:
+        (run_dir / "status_updates.json").write_text(json.dumps(updates), encoding="utf-8")
+    (run_dir / "run_meta.json").write_text(json.dumps(meta or {
+        "runner": "test", "emphasized_blocks": ["A", "B"],
+        "queries_run": ["q1"], "candidates_evaluated": 1,
+    }), encoding="utf-8")
+    return run_dir
+
+
+def read_registry(root: Path):
+    with (root / "data/registry.csv").open(encoding="utf-8") as f:
+        return list(csv.DictReader(f))
+
+
+def test_plan_run_emits_valid_plan(tmp_path):
+    root = make_repo(tmp_path)
+    r = run_script("plan_run.py", "--root", str(root))
+    assert r.returncode == 0, r.stderr
+    plan = json.loads(r.stdout)
+    assert plan["always_block"] == "F"
+    assert plan["emphasized_blocks"] == ["A", "B"]  # cursor 0, F excluded from rotation
+    assert "glean.com" in plan["known_domains"]
+    assert 1 <= len(plan["status_targets"]) <= 8
+
+
+def test_tanderrum_regression_merges_cleanly(tmp_path):
+    """THE regression: a Tanderrum-class candidate must enter the registry."""
+    root = make_repo(tmp_path)
+    cands = json.loads((FIXTURES / "tanderrum_candidate.json").read_text(encoding="utf-8"))
+    run_dir = write_run(root, candidates=cands)
+    r = run_script("validate_merge.py", "--run-dir", str(run_dir), "--root", str(root), "--runner", "test")
+    assert r.returncode == 0, r.stdout + r.stderr
+    rows = read_registry(root)
+    match = [x for x in rows if x["domain"] == "tanderrum-regression.ai"]  # normalized
+    assert match and match[0]["tier"] == "2" and match[0]["first_seen"] == match[0]["last_checked"]
+    assert "tanderrum-regression" not in (root / "runs/2026-06-15").joinpath("ESCALATION.md").read_text() \
+        if (root / "runs/2026-06-15/ESCALATION.md").exists() else True  # T2 must not escalate
+    assert "net-new added: 1" in (root / "data/SCANLOG.md").read_text(encoding="utf-8")
+
+
+def test_new_tier1_escalates(tmp_path):
+    root = make_repo(tmp_path)
+    cand = json.loads((FIXTURES / "tanderrum_candidate.json").read_text(encoding="utf-8"))[0] | {
+        "name": "DirectThreat", "domain": "directthreat.ai", "tier": "1", "cluster": "direct",
+        "evidence_url": "https://directthreat.ai/",
+    }
+    run_dir = write_run(root, candidates=[cand])
+    r = run_script("validate_merge.py", "--run-dir", str(run_dir), "--root", str(root), "--runner", "test")
+    assert r.returncode == 0, r.stdout + r.stderr
+    assert (run_dir / "ESCALATION.md").exists()
+    assert "NEW TIER 1: DirectThreat" in (run_dir / "ESCALATION.md").read_text(encoding="utf-8")
+    assert "⚠ NEW TIER 1" in (root / "data/LANDSCAPE.md").read_text(encoding="utf-8")
+
+
+def test_duplicate_domain_rejected_with_normalization(tmp_path):
+    root = make_repo(tmp_path)
+    cand = json.loads((FIXTURES / "tanderrum_candidate.json").read_text(encoding="utf-8"))[0] | {
+        "domain": "https://www.GLEAN.com/about",  # already registered as glean.com
+    }
+    run_dir = write_run(root, candidates=[cand])
+    before = read_registry(root)
+    r = run_script("validate_merge.py", "--run-dir", str(run_dir), "--root", str(root))
+    assert r.returncode == 1
+    assert "already in registry" in r.stdout
+    assert read_registry(root) == before  # nothing written on failure
+
+
+def test_invalid_enums_rejected(tmp_path):
+    root = make_repo(tmp_path)
+    cand = json.loads((FIXTURES / "tanderrum_candidate.json").read_text(encoding="utf-8"))[0] | {
+        "tier": "4", "cluster": "vibes",
+    }
+    run_dir = write_run(root, candidates=[cand])
+    r = run_script("validate_merge.py", "--run-dir", str(run_dir), "--root", str(root))
+    assert r.returncode == 1
+    assert "tier" in r.stdout and "cluster" in r.stdout
+
+
+def test_status_update_applies_and_logs(tmp_path):
+    root = make_repo(tmp_path)
+    run_dir = write_run(root, candidates=[], updates=[{
+        "domain": "zenlytic.com",
+        "fields_changed": {"stage": "series-b", "notes": "raised B 2026-06"},
+        "change_summary": "Raised Series B",
+        "evidence_url": "https://example.com/round",
+    }])
+    r = run_script("validate_merge.py", "--run-dir", str(run_dir), "--root", str(root), "--runner", "test")
+    assert r.returncode == 0, r.stdout + r.stderr
+    z = [x for x in read_registry(root) if x["domain"] == "zenlytic.com"][0]
+    assert z["stage"] == "series-b" and z["last_checked"] == date.today().isoformat()
+    assert "Raised Series B" in (root / "data/LANDSCAPE.md").read_text(encoding="utf-8")
+
+
+def test_cursors_advance_only_on_success(tmp_path):
+    root = make_repo(tmp_path)
+    # Failed merge: cursor untouched
+    bad = write_run(root, candidates=[{"name": "x"}], day="2026-06-15")
+    run_script("validate_merge.py", "--run-dir", str(bad), "--root", str(root))
+    assert json.loads((root / "data/state.json").read_text())["block_cursor"] == 0
+    # Successful merge: cursor advances by emphasis_per_run
+    good = write_run(root, candidates=[], day="2026-06-18")
+    r = run_script("validate_merge.py", "--run-dir", str(good), "--root", str(root))
+    assert r.returncode == 0, r.stdout + r.stderr
+    st = json.loads((root / "data/state.json").read_text())
+    assert st["block_cursor"] == 2 and st["status_cursor"] == 8

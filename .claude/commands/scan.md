@@ -1,0 +1,50 @@
+---
+description: Run one competitive-landscape scan cycle (search → score → merge → log)
+---
+
+Run one radar cycle. Follow exactly; budgets are caps, not targets.
+
+## 1. Plan
+
+```bash
+python3 scripts/plan_run.py
+```
+
+Gives you: `run_date`, `emphasized_blocks`, `status_targets` (~8 companies), `known_domains`. Create `runs/<run_date>/`. Read `config/queries.md` and `config/rubric.md`.
+
+## 2. Discovery sweep (≤16 WebSearch calls)
+
+Run: 4 queries from Block F (always) + ~5 from each emphasized block + 2 wildcard queries you compose yourself (base them on the tuning log and anything notable from recent changelog entries; fill `{year}`/`{month}`/`{current batch}` with today's values).
+
+From results, collect candidate companies — actual companies with domains, not articles or features. Ignore anything whose normalized domain is in `known_domains`.
+
+## 3. Verify + score (≤10 WebFetch calls)
+
+For each net-new candidate: WebFetch its homepage (or its YC/press page if the site is JS-empty). Confirm it's real and what it does. Score per `config/rubric.md` — mechanics over vocabulary, higher tier when torn. Only Tier 1/2 candidates and notable Tier 3 (funded infra in our pillars) go in `candidates.json`. Unverifiable-but-plausible → `run_meta.json` notes as `watch-unconfirmed`.
+
+## 4. Status sweep (≤8 WebSearch calls)
+
+One query per `status_target` (template at the bottom of `config/queries.md`). Material changes only → `status_updates.json`. No change → nothing.
+
+## 5. Write outputs
+
+`runs/<run_date>/candidates.json`, `status_updates.json` (omit if empty), `run_meta.json` — schemas in `CLAUDE.md`. Set `runner` to `github` if running in CI (the `GITHUB_ACTIONS` env var is set), else `cowork` or `local`.
+
+## 6. Merge
+
+```bash
+python3 scripts/validate_merge.py --run-dir runs/<run_date> --runner <runner>
+```
+
+If it fails: fix the JSON per its errors, re-run (max 2 retries, then write `runs/<run_date>/FAILED.md` and stop). On success it updates the registry, LANDSCAPE changelog, SCANLOG, state, and writes `ESCALATION.md` if a Tier 1 appeared.
+
+## 7. Learn (optional, encouraged)
+
+If a query class clearly over/under-performed, append one dated line to the tuning log in `config/queries.md`.
+
+## 8. Finish
+
+- **CI (GitHub Actions):** stop here — the workflow commits, pushes, and opens any escalation issue.
+- **Local/Cowork:** `git add -A && git commit -m "scan: <run_date> (<runner>)"`. Do not push.
+
+Never edit `data/registry.csv`, `data/SCANLOG.md`, `data/state.json`, or the LANDSCAPE changelog by hand.

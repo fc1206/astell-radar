@@ -1,0 +1,53 @@
+name: scan
+on:
+  schedule:
+    - cron: "0 14 * * 1,4"   # Mon + Thu 14:00 UTC ≈ 7am PT — adjust to your timezone
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run /scan via Claude Code
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: "/scan"
+          claude_args: "--model ${{ vars.SCAN_MODEL || 'claude-sonnet-4-6' }} --max-turns 80 --allowedTools 'Bash(python3 *),Bash(python *),Bash(ls *),Bash(cat *),Bash(mkdir *),WebSearch,WebFetch,Read,Write,Edit,Glob,Grep'"
+
+      - name: Commit scan results
+        run: |
+          git config user.name "astell-radar-bot"
+          git config user.email "radar@labtwofour.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "scan: $(date -u +%F) (github)"
+          git push
+
+      - name: Open issue on new Tier 1
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          latest=$(ls -d runs/*/ 2>/dev/null | sort | tail -1)
+          if [ -n "$latest" ] && [ -f "${latest}ESCALATION.md" ] && [ -z "$(git log --oneline -1 --grep ESCALATION 2>/dev/null)" ]; then
+            # only escalate if this run produced it (file is inside today's run dir)
+            if [ "$(basename $latest)" = "$(date -u +%F)" ]; then
+              gh issue create --title "⚠ Radar: new Tier-1 competitor ($(date -u +%F))" --body-file "${latest}ESCALATION.md"
+            fi
+          fi
+
+      - name: Flag failed run
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh issue create --title "Radar scan FAILED ($(date -u +%F))" --body "The scheduled scan did not complete. Check the Actions log. A silent radar is a blind radar — fix before the next cycle." || true

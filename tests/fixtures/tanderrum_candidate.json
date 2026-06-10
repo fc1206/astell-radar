@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Tanderrum-class Test Co",
+    "domain": "https://www.tanderrum-regression.ai/",
+    "tier": "2",
+    "cluster": "data-intel",
+    "status": "active",
+    "stage": "bootstrapped",
+    "hq": "Melbourne, AU",
+    "founded": "2020",
+    "what": "Enterprise search + lineage + conversational BI over structured and unstructured data; no press, no Crunchbase, LinkedIn-only launch",
+    "why_tier": "Same customer promise as Astell in data vocabulary; claims enterprise search over unstructured docs too",
+    "evidence_url": "https://www.tanderrum-regression.ai/",
+    "notes": "Regression fixture: the harness must accept and register Tanderrum-class candidates (different vocabulary, zero press footprint)"
+  }
+]
