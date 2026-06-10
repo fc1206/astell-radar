@@ -4,7 +4,7 @@ Competitive-landscape radar for Astell (astell.space). Runs `/scan` twice a week
 
 ## Hard rules (non-negotiable, any model)
 
-1. **Never hand-edit** `data/registry.csv`, `data/SCANLOG.md`, `data/state.json`, or the changelog in `data/LANDSCAPE.md`. The only writer is `scripts/validate_merge.py`. You write `runs/<date>/*.json`; the script does the rest.
+1. **Never hand-edit** `data/registry.csv`, `data/SCANLOG.md`, `data/state.json`, `data/DIGEST.md`, or the changelog in `data/LANDSCAPE.md`. The only writers are `scripts/validate_merge.py` (registry/scanlog/state/changelog) and `scripts/validate_digest.py` (digest). You write `runs/<date>/*` files; the scripts do the rest.
 2. **Every company needs a live evidence URL.** No URL, no entry. If a company looks real but you can't verify (site empty/JS-only), note it in `run_meta.json` notes as `watch-unconfirmed: <name> <domain>` instead of adding it.
 3. **Every run logs**, even with zero findings. Zero is signal.
 4. **When torn between tiers, pick the higher.** A false positive costs a minute; a miss costs what Tanderrum cost (see `config/rubric.md`).
@@ -28,10 +28,14 @@ Competitive-landscape radar for Astell (astell.space). Runs `/scan` twice a week
 {"runner": "github|cowork|local", "emphasized_blocks": ["A", "B"], "queries_run": ["..."], "candidates_evaluated": 0, "notes": "optional"}
 ```
 
+`runs/<date>/digest.md` — markdown per `config/digest-spec.md` (0–5 cited, actionable items derived against `config/astell-context.md`, or the NO ACTIONABLE SIGNAL sentinel). Validated and prepended to `data/DIGEST.md` by `scripts/validate_digest.py`.
+
 ## Key files
 
 - `config/queries.md` — query battery (edit to tune; append lessons to its tuning log)
 - `config/rubric.md` — tier definitions + calibration examples (Tanderrum is canonical)
+- `config/astell-context.md` — strategy frame the digest is judged against (Frank-editable)
+- `config/digest-spec.md` — the anti-slop digest contract
 - `data/registry.csv` — system of record, append-mostly
 - `data/LANDSCAPE.md` — narrative map + changelog
 - `.claude/commands/scan.md` — the run procedure

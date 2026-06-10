@@ -32,7 +32,9 @@ def load(root: Path):
     state = json.loads((root / "data/state.json").read_text(encoding="utf-8"))
     scanlog = (root / "data/SCANLOG.md").read_text(encoding="utf-8")
     landscape = (root / "data/LANDSCAPE.md").read_text(encoding="utf-8")
-    return rows, state, scanlog, landscape
+    digest_p = root / "data/DIGEST.md"
+    digest = digest_p.read_text(encoding="utf-8") if digest_p.exists() else ""
+    return rows, state, scanlog, landscape, digest
 
 
 def latest_scan_notes(scanlog: str) -> str:
@@ -55,7 +57,7 @@ def esc_keep_strong(s: str) -> str:
 
 
 def render(root: Path, out: Path):
-    rows, state, scanlog, landscape = load(root)
+    rows, state, scanlog, landscape, digest = load(root)
     run_date = state.get("last_run", date.today().isoformat())
     runner = state.get("last_runner", "?")
     tiers = {t: [r for r in rows if r["tier"] == t] for t in ("1", "2", "3")}
@@ -69,6 +71,16 @@ def render(root: Path, out: Path):
     new_domains = {r["domain"] for r in new_rows}
     threats = threat_top5(landscape)
     notes = latest_scan_notes(scanlog)
+
+    digest_html = ""
+    dm = re.search(r"^## (\d{4}-\d{2}-\d{2}) — digest.*?(?=^## \d{4}|\Z)", digest, re.M | re.S)
+    if dm:
+        d = esc(dm.group(0).strip())
+        d = re.sub(r"^## (.*)$", r'<div class="dghead">\1</div>', d, count=1, flags=re.M)
+        d = re.sub(r"^### (.*)$", r'<div class="dgitem">\1</div>', d, flags=re.M)
+        d = re.sub(r"\*\*(.*?)\*\*", r"<strong>\1</strong>", d)
+        d = re.sub(r"(https?://[^\s<)]+)", r'<a href="\1" target="_blank" rel="noopener">\1</a>', d)
+        digest_html = d.replace("\n", "<br>")
 
     def row_html(r):
         label, color = TIER_META.get(r["tier"], ("T?", "#888"))
@@ -166,6 +178,9 @@ td.what {{ max-width:430px; }}
   <div class="stat"><b style="color:#9aa3ad">{len(tiers['3'])}</b><span>Tier 3 · context</span></div>
   <div class="stat"><b style="color:#3fb950">{len(new_rows)}</b><span>new this run</span></div>
 </div>
+
+<h2>Decision digest — what it means, what to do</h2>
+<div class="lognotes" style="border-left:3px solid #3fb950">{digest_html if digest_html else 'No digest entry for this scan yet — see <code>data/DIGEST.md</code>.'}</div>
 
 <h2>New this run</h2>
 <div class="cards">{new_cards}</div>

@@ -1,5 +1,5 @@
 ---
-description: Run one competitive-landscape scan cycle (search → score → merge → log)
+description: Run one competitive-landscape scan cycle (search → score → merge → digest → log)
 ---
 
 Run one radar cycle. Follow exactly; budgets are caps, not targets.
@@ -38,13 +38,29 @@ python3 scripts/validate_merge.py --run-dir runs/<run_date> --runner <runner>
 
 If it fails: fix the JSON per its errors, re-run (max 2 retries, then write `runs/<run_date>/FAILED.md` and stop). On success it updates the registry, LANDSCAPE changelog, SCANLOG, state, and writes `ESCALATION.md` if a Tier 1 appeared.
 
-## 7. Learn (optional, encouraged)
+## 7. Decision digest (judgment step — read the contract first)
+
+Read `config/astell-context.md` + `config/digest-spec.md` + the 3 most recent entries in `data/DIGEST.md`. Apply the actionability bar to THIS run's findings. Write `runs/<run_date>/digest.md` in the spec's exact format (0–5 items, or the NO ACTIONABLE SIGNAL sentinel). Then:
+
+```bash
+python3 scripts/validate_digest.py --run-dir runs/<run_date>
+```
+
+If rejected, fix per its errors and re-run (max 2 retries; if still failing, write the errors to `runs/<run_date>/digest-FAILED.md` and continue — a missing digest must not kill the scan). The validator prepends accepted entries to `data/DIGEST.md`; never edit that file directly.
+
+## 8. Render
+
+```bash
+python3 scripts/render_report.py
+```
+
+## 9. Learn (optional, encouraged)
 
 If a query class clearly over/under-performed, append one dated line to the tuning log in `config/queries.md`.
 
-## 8. Finish
+## 10. Finish
 
-- **CI (GitHub Actions):** stop here — the workflow commits, pushes, and opens any escalation issue.
+- **CI (GitHub Actions):** stop here — the workflow commits, pushes, notifies Slack, and opens any escalation issue.
 - **Local/Cowork:** `git add -A && git commit -m "scan: <run_date> (<runner>)"`. Do not push.
 
-Never edit `data/registry.csv`, `data/SCANLOG.md`, `data/state.json`, or the LANDSCAPE changelog by hand.
+Never edit `data/registry.csv`, `data/SCANLOG.md`, `data/state.json`, `data/DIGEST.md`, or the LANDSCAPE changelog by hand — only the scripts write those.

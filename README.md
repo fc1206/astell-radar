@@ -6,6 +6,7 @@ Autonomous competitive-landscape radar for [Astell](https://astell.space). Scans
 
 A scan = the `/scan` slash command executed by Claude Code. The LLM does exactly two judgment tasks — extract candidate companies from web searches, and score them against `config/rubric.md`. Everything else is deterministic Python (`scripts/`): query-block rotation, status-sweep round-robin, schema validation, domain-normalized dedupe, registry merge, changelog, escalation. The model writes `runs/<date>/*.json`; `validate_merge.py` is the only writer of the system of record and rejects anything malformed. That separation is what makes the harness model-agnostic: run it on Sonnet for pennies, the registry can't be corrupted either way.
 
+- `data/DIGEST.md` — the decision digest: what each scan *means* for Astell and what to do, derived against `config/astell-context.md` under the anti-slop contract in `config/digest-spec.md`, structurally enforced by `scripts/validate_digest.py` (banned-phrase lint, mandatory citations, actions must name deliverables; "NO ACTIONABLE SIGNAL" is a legal output). **Edit `config/astell-context.md` as strategy evolves — digest quality follows it.**
 - `data/registry.csv` — system of record (seeded with a 73-company baseline)
 - `data/LANDSCAPE.md` — narrative map, threat assessment, changelog
 - `data/SCANLOG.md` — append-only audit trail; zero-find runs log too
