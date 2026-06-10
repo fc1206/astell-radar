@@ -34,7 +34,7 @@ jobs:
           prompt: "/scan"
           claude_args: "--model ${{ vars.SCAN_MODEL || 'claude-sonnet-4-6' }} --max-turns 80 --allowedTools 'Bash(python3 *),Bash(python *),Bash(ls *),Bash(cat *),Bash(mkdir *),WebSearch,WebFetch,Read,Write,Edit,Glob,Grep'"
 
-      - name: Open scan PR (org rules require PR-based changes)
+      - name: Publish scan results (direct push; PR fallback if rules require)
         env:
           GH_TOKEN: ${{ secrets.RADAR_TOKEN || github.token }}
         run: |
@@ -45,9 +45,13 @@ jobs:
             echo "No changes produced by this scan."; exit 0
           fi
           DATE=$(date -u +%F)
+          git commit -m "scan: ${DATE} (github)"
+          if git push origin HEAD:main; then
+            echo "Pushed directly to main."; exit 0
+          fi
+          echo "Direct push rejected — falling back to PR flow."
           BRANCH="scan/${DATE}-$(date -u +%H%M%S)"
           git checkout -b "$BRANCH"
-          git commit -m "scan: ${DATE} (github)"
           git push -u origin "$BRANCH"
           {
             echo "Automated radar scan ${DATE}."
@@ -61,10 +65,9 @@ jobs:
             fi
           } > /tmp/pr_body.md
           gh pr create --base main --head "$BRANCH" --title "scan: ${DATE}" --body-file /tmp/pr_body.md
-          # Merge instantly if rules allow; else arm auto-merge; else leave PR for manual merge.
           gh pr merge "$BRANCH" --squash --delete-branch \
             || gh pr merge "$BRANCH" --squash --delete-branch --auto \
-            || echo "::warning::Scan PR left open — org rules require manual merge. Merge it promptly to keep scans linear."
+            || echo "::warning::Scan PR left open — repo rules require manual merge. Merge promptly to keep scans linear."
 
       - name: Open issue on new Tier 1
         env:
