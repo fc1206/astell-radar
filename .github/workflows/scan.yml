@@ -8,6 +8,11 @@ permissions:
   contents: write
   issues: write
   id-token: write
+  pull-requests: write
+
+concurrency:
+  group: radar-scan
+  cancel-in-progress: false
 
 jobs:
   scan:
@@ -27,21 +32,44 @@ jobs:
           prompt: "/scan"
           claude_args: "--model ${{ vars.SCAN_MODEL || 'claude-sonnet-4-6' }} --max-turns 80 --allowedTools 'Bash(python3 *),Bash(python *),Bash(ls *),Bash(cat *),Bash(mkdir *),WebSearch,WebFetch,Read,Write,Edit,Glob,Grep'"
 
-      - name: Commit scan results
+      - name: Open scan PR (org rules require PR-based changes)
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           git config user.name "astell-radar-bot"
           git config user.email "radar@labtwofour.com"
           git add -A
-          git diff --cached --quiet || git commit -m "scan: $(date -u +%F) (github)"
-          git push
+          if git diff --cached --quiet; then
+            echo "No changes produced by this scan."; exit 0
+          fi
+          DATE=$(date -u +%F)
+          BRANCH="scan/${DATE}-$(date -u +%H%M%S)"
+          git checkout -b "$BRANCH"
+          git commit -m "scan: ${DATE} (github)"
+          git push -u origin "$BRANCH"
+          {
+            echo "Automated radar scan ${DATE}."
+            echo
+            echo '```'
+            tail -n 12 data/SCANLOG.md
+            echo '```'
+            LATEST=$(ls -d runs/*/ 2>/dev/null | sort | tail -1)
+            if [ -n "$LATEST" ] && [ -f "${LATEST}ESCALATION.md" ]; then
+              echo; echo "## ⚠ ESCALATION"; echo; cat "${LATEST}ESCALATION.md"
+            fi
+          } > /tmp/pr_body.md
+          gh pr create --base main --head "$BRANCH" --title "scan: ${DATE}" --body-file /tmp/pr_body.md
+          # Merge instantly if rules allow; else arm auto-merge; else leave PR for manual merge.
+          gh pr merge "$BRANCH" --squash --delete-branch \
+            || gh pr merge "$BRANCH" --squash --delete-branch --auto \
+            || echo "::warning::Scan PR left open — org rules require manual merge. Merge it promptly to keep scans linear."
 
       - name: Open issue on new Tier 1
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           latest=$(ls -d runs/*/ 2>/dev/null | sort | tail -1)
-          if [ -n "$latest" ] && [ -f "${latest}ESCALATION.md" ] && [ -z "$(git log --oneline -1 --grep ESCALATION 2>/dev/null)" ]; then
-            # only escalate if this run produced it (file is inside today's run dir)
+          if [ -n "$latest" ] && [ -f "${latest}ESCALATION.md" ]; then
             if [ "$(basename $latest)" = "$(date -u +%F)" ]; then
               gh issue create --title "⚠ Radar: new Tier-1 competitor ($(date -u +%F))" --body-file "${latest}ESCALATION.md"
             fi
