@@ -171,7 +171,7 @@ def main():
         entry.append("No new companies, no material status changes. Blocks swept: "
                      + ", ".join(meta.get("emphasized_blocks", [])) + ".")
     land = land.replace("## Changelog\n", "## Changelog\n\n" + "\n".join(entry) + "\n", 1)
-    land = re.sub(r"\*\*Last scan:\*\* .*", f"**Last scan:** {run_date} ({args.runner})", land, count=1)
+    land = re.sub(r"\*\*Last scan:\*\* .*", f"**Last scan:** {run_date} ({args.runner}) · **Tracked:** {len(rows)} companies", land, count=1)
     land_path.write_text(land, encoding="utf-8")
 
     # --- scan log (append-only; every run logs, including zero-find runs) ---

@@ -37,6 +37,9 @@ jobs:
             --dangerously-skip-permissions \
             --verbose
 
+      - name: Render HTML report
+        run: python3 scripts/render_report.py
+
       - name: Publish scan results (direct push; PR fallback if rules require)
         env:
           GH_TOKEN: ${{ secrets.RADAR_TOKEN || github.token }}
@@ -71,6 +74,13 @@ jobs:
           gh pr merge "$BRANCH" --squash --delete-branch \
             || gh pr merge "$BRANCH" --squash --delete-branch --auto \
             || echo "::warning::Scan PR left open — repo rules require manual merge. Merge promptly to keep scans linear."
+
+      - name: Email report
+        env:
+          MAIL_USER: ${{ secrets.MAIL_USER }}
+          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+          MAIL_TO: ${{ secrets.MAIL_TO || 'frank@labtwofour.com' }}
+        run: python3 scripts/send_report.py || echo "::warning::email send failed (scan itself succeeded)"
 
       - name: Open issue on new Tier 1
         env:

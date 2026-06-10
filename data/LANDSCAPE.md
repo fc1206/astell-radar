@@ -1,8 +1,8 @@
 # Astell Competitive Landscape
 
-**System of record:** `registry.csv` (73 companies). This file is the narrative read; the CSV is the data. Updated by every `/scan` run — newest changelog entry first.
+**System of record:** `registry.csv` (count on the Last-scan line below, auto-updated). This file is the narrative read; the CSV is the data. Updated by every `/scan` run — newest changelog entry first.
 
-**Last full baseline:** 2026-06-10 · **Last scan:** 2026-06-10 (github)
+**Last full baseline:** 2026-06-10 · **Last scan:** 2026-06-10 (github) · **Tracked:** 84 companies
 
 ---
 
