@@ -2,7 +2,7 @@
 
 **System of record:** `registry.csv` (count on the Last-scan line below, auto-updated). This file is the narrative read; the CSV is the data. Updated by every `/scan` run — newest changelog entry first.
 
-**Last full baseline:** 2026-06-10 · **Last scan:** 2026-06-10 (github) · **Tracked:** 84 companies
+**Last full baseline:** 2026-06-10 · **Last scan:** 2026-06-10 (github) · **Tracked:** 88 companies
 
 ---
 
@@ -71,6 +71,10 @@ Melbourne, ~2020, 2–6 people, no disclosed funding, no Crunchbase, no G2, no p
 ---
 
 ## Changelog
+
+### 2026-06-10 — scan (github)
+Added: Claryti (T2, chief-of-staff); Zep (T2, infra); Mem0 (T2, infra); Supermemory (T2, infra)
+Updated: Microsoft 365 Copilot + Work IQ — Work IQ opened as APIs (GA Jun 16 2026) - the context layer becomes a programmable platform third parties build agents on.
 
 ### 2026-06-10 — scan (github)
 Added: Town (T2, chief-of-staff); Dot (T2, data-intel); Querio (T2, data-intel); Carly (T2, direct); Pancake (T2, direct)

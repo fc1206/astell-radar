@@ -1,0 +1,11 @@
+[
+  {
+    "domain": "microsoft.com",
+    "fields_changed": {
+      "what": "Cross-app AI on Microsoft Graph + 400+ MCP connectors; Work IQ persistent context layer now also exposed via Work IQ APIs (GA Jun 16, 2026) with Chat/Context/Tools domains, letting third parties build on the same grounding intelligence; cross-session memory, Copilot Notebooks.",
+      "notes": "Work IQ APIs reach GA 2026-06-16; consumption-priced in Copilot Credits."
+    },
+    "change_summary": "Work IQ opened as APIs (GA Jun 16 2026) - the context layer becomes a programmable platform third parties build agents on.",
+    "evidence_url": "https://www.microsoft.com/en-us/microsoft-365/blog/2026/06/02/announcing-the-new-work-iq-apis/"
+  }
+]
