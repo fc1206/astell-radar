@@ -20,6 +20,8 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.RADAR_TOKEN || github.token }}
 
       - uses: actions/setup-python@v5
         with:
@@ -34,7 +36,7 @@ jobs:
 
       - name: Open scan PR (org rules require PR-based changes)
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.RADAR_TOKEN || github.token }}
         run: |
           git config user.name "astell-radar-bot"
           git config user.email "radar@labtwofour.com"
@@ -66,7 +68,7 @@ jobs:
 
       - name: Open issue on new Tier 1
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.RADAR_TOKEN || github.token }}
         run: |
           latest=$(ls -d runs/*/ 2>/dev/null | sort | tail -1)
           if [ -n "$latest" ] && [ -f "${latest}ESCALATION.md" ]; then
@@ -78,5 +80,5 @@ jobs:
       - name: Flag failed run
         if: failure()
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.RADAR_TOKEN || github.token }}
         run: gh issue create --title "Radar scan FAILED ($(date -u +%F))" --body "The scheduled scan did not complete. Check the Actions log. A silent radar is a blind radar — fix before the next cycle." || true
