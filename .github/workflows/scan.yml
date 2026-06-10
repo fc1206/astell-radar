@@ -82,6 +82,11 @@ jobs:
           MAIL_TO: ${{ secrets.MAIL_TO || 'frank@labtwofour.com' }}
         run: python3 scripts/send_report.py || echo "::warning::email send failed (scan itself succeeded)"
 
+      - name: Notify Slack
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: python3 scripts/notify_slack.py || echo "::warning::slack notify failed (scan itself succeeded)"
+
       - name: Open issue on new Tier 1
         env:
           GH_TOKEN: ${{ secrets.RADAR_TOKEN || github.token }}
