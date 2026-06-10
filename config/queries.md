@@ -6,6 +6,7 @@ Edit freely — this file is the harness's search brain. `scripts/plan_run.py` p
 
 **Tuning log (append lessons here):**
 - 2026-06-10: "Glean alternative" class queries = highest yield (every entrant writes a vs-Glean page). Generic "AI work assistant funding {year}" = noise. Architectural-primitive queries (context graph, memory layer) catch what category queries miss (found Interloom, Cognee). Named-company status queries are the only way to catch acquisitions (Sana, Unleash) and Tanderrum-class invisibles. Product Hunt "AI chief of staff" category page = goldmine. YC: query named-concept ("YC {batch} company brain"), not batch listings.
+- 2026-06-10 (run 2): Block A self-vocabulary now nearly pure noise — "Glean alternatives/competitors" and "enterprise search startup" surface only listicles + already-tracked rows; the lane's obvious names are saturated. Block B data-vocabulary still earns its keep (found Dot, Querio via "conversational BI" / "AI data analyst funding"). Best ROI this run was the Product Hunt "AI chief of staff" wildcard — caught Town ($55M Series A, same day) and Pancake. Lean wildcards toward PH/launch venues + funding-news; trim generic Block A category queries. Status sweep added nothing: registry was already current on all 8 targets — when registry last_checked == today, status sweep is low-yield.
 
 ## Block A: self-vocabulary (work-tool language)
 

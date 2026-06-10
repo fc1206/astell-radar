@@ -2,7 +2,7 @@
 
 **System of record:** `registry.csv` (73 companies). This file is the narrative read; the CSV is the data. Updated by every `/scan` run — newest changelog entry first.
 
-**Last full baseline:** 2026-06-10 · **Last scan:** 2026-06-10 (baseline)
+**Last full baseline:** 2026-06-10 · **Last scan:** 2026-06-10 (github)
 
 ---
 
@@ -71,6 +71,9 @@ Melbourne, ~2020, 2–6 people, no disclosed funding, no Crunchbase, no G2, no p
 ---
 
 ## Changelog
+
+### 2026-06-10 — scan (github)
+Added: Town (T2, chief-of-staff); Dot (T2, data-intel); Querio (T2, data-intel); Carly (T2, direct); Pancake (T2, direct)
 
 ### 2026-06-10 — Baseline established
 Full four-cluster sweep (direct, data-intel, chief-of-staff, incumbents+funding). 73 companies registered: 27 Tier 1 (incl. 6 exited), 32 Tier 2, 14 Tier 3. Trigger: missed tanderrum.ai. Five entries flagged for verification on next status sweep: Cerenovus, Rekap, Jared, Martin/Cora/Howie domains, Wato.

@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Town",
+    "domain": "town.com",
+    "tier": "2",
+    "cluster": "chief-of-staff",
+    "status": "active",
+    "stage": "series-a",
+    "hq": "San Francisco, US",
+    "founded": "unknown",
+    "what": "Personalized AI assistant ('Townie') that learns how you work across email, calendar, Slack, docs and messaging without setup; runs on iOS/desktop/WhatsApp/Telegram/Slack/web; raised $55M Series A (a16z + Forerunner, 2026-06-03).",
+    "why_tier": "Individual-level chief-of-staff spanning many work tools proactively — explicit Tier 2 per rubric; cross-tool reach + heavy funding make it one positioning shift from team-level intelligence.",
+    "evidence_url": "https://www.town.com/",
+    "notes": "Founders Jean-Denis Greze (ex-Plaid) and Tony Vincent; Series A source https://www.globenewswire.com/news-release/2026/06/03/3306172/0/en/town-raises-55m-series-a-from-a16z-and-forerunner-to-build-the-ai-assistant-that-learns-how-you-work.html ; HQ inferred from investor base."
+  },
+  {
+    "name": "Dot",
+    "domain": "getdot.ai",
+    "tier": "2",
+    "cluster": "data-intel",
+    "status": "active",
+    "stage": "seed",
+    "hq": "unknown",
+    "founded": "unknown",
+    "what": "AI data analyst delivering plain-English analytics inside Slack/Teams/email, with a 'Context Agent' that keeps metric definitions consistent across teams; 100+ customer teams incl. Duolingo, Airbyte, BlaBlaCar, Babbel.",
+    "why_tier": "Tanderrum pattern — governed natural-language analytics in data vocabulary; one connector pivot from cross-tool intelligence over a company's whole stack.",
+    "evidence_url": "https://www.getdot.ai/",
+    "notes": "Stage/HQ/founded undisclosed on site; customer base skews European."
+  },
+  {
+    "name": "Querio",
+    "domain": "querio.ai",
+    "tier": "2",
+    "cluster": "data-intel",
+    "status": "active",
+    "stage": "seed",
+    "hq": "unknown",
+    "founded": "2024",
+    "what": "Agentic notebooks + AI agents that generate transparent SQL/Python over warehouses (Snowflake, BigQuery, Redshift, ClickHouse, +5), with a context layer for reusable logic/governance; positioned as a Looker replacement.",
+    "why_tier": "Warehouse-bounded AI analyst à la Zenlytic — Astell's promise in BI vocabulary; Tier 2 data-intel.",
+    "evidence_url": "https://querio.ai/",
+    "notes": "'Querio Ltd' (UK Ltd) per site footer; stage undisclosed."
+  },
+  {
+    "name": "Carly",
+    "domain": "usecarly.com",
+    "tier": "2",
+    "cluster": "direct",
+    "status": "active",
+    "stage": "seed",
+    "hq": "unknown",
+    "founded": "unknown",
+    "what": "AI agent platform — CC an agent (each with its own email + memory) on a thread and it books meetings, updates CRM and runs ops across 100+/200+ work-tool integrations (Slack, Notion, Linear, Asana, HubSpot, Salesforce, +).",
+    "why_tier": "Broad multi-tool agent platform with per-agent memory; automation-first but one pivot from a cross-tool intelligence layer (cf. Lindy/Coworker trajectory).",
+    "evidence_url": "https://www.usecarly.com/",
+    "notes": "Automation-first; funding/HQ/founded undisclosed; stage inferred."
+  },
+  {
+    "name": "Pancake",
+    "domain": "getpancake.ai",
+    "tier": "2",
+    "cluster": "direct",
+    "status": "active",
+    "stage": "seed",
+    "hq": "unknown",
+    "founded": "2026",
+    "what": "Slack-native multi-agent platform that runs company operations via specialized sub-agents (meeting prep, inbound, SDR) with an organizational-memory system across sessions plus email/browser/phone integrations.",
+    "why_tier": "Org memory + autonomous multi-tool agents acting across the company; agent-platform one pivot from Astell's lane (cf. Dust/Coworker), worth tracking despite execution-first framing.",
+    "evidence_url": "https://www.producthunt.com/products/pancake-6",
+    "notes": "Built by Basalt (Chris Messina, Tristan Comte, François de Fitte); launched 2026; SOC II per compliance.getbasalt.ai; stage/funding undisclosed, inferred."
+  }
+]
