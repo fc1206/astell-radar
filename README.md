@@ -24,6 +24,12 @@ gh workflow enable scan.yml            # if not auto-enabled
 
 Then watch the repo (Watch → All activity) so Tier-1 escalation issues hit your inbox.
 
+**Org-rule compatibility:** the labtwofour org requires changes via pull request, so each scan pushes a `scan/<date>` branch and opens a PR, then squash-merges it automatically if the ruleset allows (no required reviews) — otherwise the PR waits for your one-click merge; merge promptly to keep scans linear. This requires the repo Actions setting "Allow GitHub Actions to create and approve pull requests":
+
+```bash
+gh api -X PUT repos/labtwofour/astell-radar/actions/permissions/workflow -f default_workflow_permissions=write -F can_approve_pull_request_reviews=true
+```
+
 ## Schedule + model
 
 `.github/workflows/scan.yml` runs Mon/Thu 14:00 UTC (adjust the cron to taste). Model defaults to **Sonnet** — set a repo variable `SCAN_MODEL` (e.g. `claude-opus-4-8`) to change it without touching code. If the action's input names drift, check the [claude-code-action docs](https://github.com/anthropics/claude-code-action).
