@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Sentra",
+    "domain": "sentra.app",
+    "tier": "1",
+    "cluster": "direct",
+    "status": "active",
+    "stage": "seed",
+    "hq": "unknown",
+    "founded": "unknown",
+    "what": "Bi-temporal context graph ('organizational memory') syncing 200+ work tools (Slack, Gmail, Drive, HubSpot, Linear, GitHub, Notion, Asana); surfaces what's true/owed/meant via NL query + MCP/REST memory API with source attribution",
+    "why_tier": "Astell's exact mechanics — cross-tool ingest, graph-not-snapshot, cite-not-hallucinate, open-loop surfacing — wrapped in 'memory API' vocabulary; vocabulary never overrides mechanics (cf. Coworker)",
+    "evidence_url": "https://sentra.app",
+    "notes": "a16z Speedrun + Together Fund backed (~$5M seed reported); paid POC reported with SoftBank; HQ/founding unconfirmed. Distinct from data-security firm sentra.io"
+  },
+  {
+    "name": "PipesHub",
+    "domain": "pipeshub.com",
+    "tier": "1",
+    "cluster": "direct",
+    "status": "active",
+    "stage": "bootstrapped",
+    "hq": "San Francisco, US",
+    "founded": "unknown",
+    "what": "Open-source + commercial enterprise workplace AI: cross-SaaS search + agentic automation over Slack, Notion, GitHub, Salesforce, Drive, Jira; knowledge-graph retrieval with pinpointed citations; self-hostable, model-agnostic, SOC 2 Type II",
+    "why_tier": "Cross-SaaS search + graph + cited answers + agents = Astell's core mechanics; 'own your infra' open-source angle is the wedge against Glean/Astell",
+    "evidence_url": "https://pipeshub.com",
+    "notes": "Apache-2.0 OSS with paid enterprise tier; funding/stage/founding unconfirmed (stage=bootstrapped is a guess)"
+  },
+  {
+    "name": "Jedify",
+    "domain": "jedify.com",
+    "tier": "2",
+    "cluster": "data-intel",
+    "status": "active",
+    "stage": "series-a",
+    "hq": "Tel Aviv, IL",
+    "founded": "unknown",
+    "what": "'Autonomous context graph' / Semantic Fusion — an AI-ready contextual data layer fusing business logic over warehouses, BI tools, databases and CRMs so agents reason with full company context",
+    "why_tier": "Tanderrum-class: Astell's context-graph promise in warehouse/BI vocabulary; one connector-set or positioning shift away from the work-tool lane",
+    "evidence_url": "https://jedify.com",
+    "notes": "$24M Series A (Norwest lead, Snowflake Ventures strategic; ~$33M total); HQ inferred from Israeli press (Calcalist/Ctech), founding unconfirmed"
+  },
+  {
+    "name": "Doti",
+    "domain": "doti.ai",
+    "tier": "1",
+    "cluster": "direct",
+    "status": "acquired",
+    "stage": "acquired",
+    "hq": "Tel Aviv, IL",
+    "founded": "unknown",
+    "what": "DIY agentic enterprise-search platform that searches a team's tools and builds workflow agents; acquired by Salesforce (announced Nov 13 2025, closed Q4 FY2026) to power agentic search in Slack/Agentforce",
+    "why_tier": "Direct-lane enterprise search; acquisition = 4th consolidation of the category into a suite (after Dashworks→HubSpot, Unleash→Zendesk, Akooda→Tulip)",
+    "evidence_url": "https://www.salesforceben.com/salesforce-buys-agentic-search-company-doti-its-eighth-acquisition-this-year/",
+    "notes": "Customers Orca Security, Similarweb, Bringg; HQ inferred from Israeli customer base; founding/funding undisclosed"
+  }
+]

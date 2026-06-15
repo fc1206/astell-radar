@@ -1,0 +1,20 @@
+[
+  {
+    "domain": "atlassian.com",
+    "fields_changed": {
+      "what": "AI search + chat + agents on Teamwork Graph; at Team '26 (May 2026) Atlassian opened the Teamwork Graph (150B+ connections) as a cross-tool context layer spanning Atlassian + third-party tools and evolved Rovo from helper into agentic execution (plan + run multistep work autonomously); 5M+ MAU; bundled into paid Atlassian Cloud plans",
+      "notes": "also acquired Secoda (Dec 2025); Team '26 = clearest incumbent move toward open-loop, autonomous cross-tool action"
+    },
+    "change_summary": "Team '26 (May 2026): opened Teamwork Graph (150B+ connections) + Rovo agentic execution; 5M MAU",
+    "evidence_url": "https://siliconangle.com/2026/05/06/atlassian-opens-teamwork-graph-pushes-rovo-agentic-execution-team-26/"
+  },
+  {
+    "domain": "openai.com",
+    "fields_changed": {
+      "evidence_url": "https://openai.com/index/introducing-workspace-agents-in-chatgpt/",
+      "notes": "Canonical OpenAI Workspace Agents announcement confirmed (was secondary-blog); always-on agents across Slack, Salesforce, M365, Drive, GitHub, Notion + 60+ apps; free through Jul 6 2026, then credit-based pricing"
+    },
+    "change_summary": "Confirmed canonical Workspace Agents announcement; free until Jul 6 2026 then credit-priced",
+    "evidence_url": "https://openai.com/index/introducing-workspace-agents-in-chatgpt/"
+  }
+]

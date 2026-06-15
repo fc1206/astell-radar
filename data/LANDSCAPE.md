@@ -2,7 +2,7 @@
 
 **System of record:** `registry.csv` (count on the Last-scan line below, auto-updated). This file is the narrative read; the CSV is the data. Updated by every `/scan` run — newest changelog entry first.
 
-**Last full baseline:** 2026-06-10 · **Last scan:** 2026-06-10 (github) · **Tracked:** 88 companies
+**Last full baseline:** 2026-06-10 · **Last scan:** 2026-06-15 (github) · **Tracked:** 92 companies
 
 ---
 
@@ -71,6 +71,11 @@ Melbourne, ~2020, 2–6 people, no disclosed funding, no Crunchbase, no G2, no p
 ---
 
 ## Changelog
+
+### 2026-06-15 — scan (github)
+**⚠ NEW TIER 1:** Sentra (sentra.app), PipesHub (pipeshub.com), Doti (doti.ai)
+Added: Sentra (T1, direct); PipesHub (T1, direct); Jedify (T2, data-intel); Doti (T1, direct)
+Updated: Atlassian Rovo — Team '26 (May 2026): opened Teamwork Graph (150B+ connections) + Rovo agentic execution; 5M MAU; OpenAI Workspace Agents (ChatGPT Enterprise) — Confirmed canonical Workspace Agents announcement; free until Jul 6 2026 then credit-priced
 
 ### 2026-06-10 — scan (github)
 Added: Claryti (T2, chief-of-staff); Zep (T2, infra); Mem0 (T2, infra); Supermemory (T2, infra)

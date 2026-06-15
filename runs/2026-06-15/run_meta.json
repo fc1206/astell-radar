@@ -1,0 +1,32 @@
+{
+  "runner": "github",
+  "emphasized_blocks": ["E", "G"],
+  "queries_run": [
+    "Glean alternatives 2026",
+    "Glean competitors 2026",
+    "Astell alternative enterprise search",
+    "\"vs Glean\" enterprise AI search startup",
+    "\"context graph\" startup company knowledge 2026",
+    "\"organizational memory\" AI startup 2026",
+    "\"company brain\" AI startup enterprise",
+    "\"AI memory layer\" enterprise startup funding 2026",
+    "tacit knowledge AI enterprise startup",
+    "enterprise search seed round June 2026 funding",
+    "\"context layer\" OR \"context graph\" funding 2026 raised",
+    "AI knowledge management startup raised 2026 techcrunch",
+    "YC Summer 2026 company brain OR knowledge graph OR enterprise search",
+    "Product Hunt AI chief of staff new launches 2026",
+    "\"company brain\" YC Summer 2026 startups aggregate company knowledge",
+    "agentic analytics OR enterprise context platform Series A funding May June 2026",
+    "status: Salesforce Agentforce / Slack AI 2026",
+    "status: Atlassian Rovo 2026",
+    "status: Dropbox Dash 2026",
+    "status: Notion enterprise search 2026",
+    "status: OpenAI ChatGPT Enterprise workspace agents 2026",
+    "status: Dashworks 2026",
+    "status: Unleash.so 2026",
+    "status: Akooda 2026"
+  ],
+  "candidates_evaluated": 16,
+  "notes": "Net-new added: Sentra (T1/direct, closest Astell-mechanics find this run), PipesHub (T1/direct, OSS enterprise search), Jedify (T2/data-intel, $24M Series A), Doti (T1/direct, acquired by Salesforce — 4th category consolidation). watch-unconfirmed: Lovelace/Elemental (KG infra, ex-Google Cloud AI head Andrew Moore; intel+finance focus; no homepage/domain or funding confirmed); XTrace (private portable memory infra, no verified homepage); xmemory (London £3m pre-seed memory layer, unverified); company-brain.ai (manual MCP context store, Tier 3, unfunded/early-access — below registry bar); Context.dev and Glen (YC S26 agent-context infra, unverified). Interloom (already in registry) confirmed current — $16.5M seed already reflected, no update. Cerenovus already tracked (recurring YC 'company brain' RFS exemplar). 16 discovery searches (cap) + 8 status searches; 7 WebFetch verifications."
+}
