@@ -168,3 +168,35 @@ def test_cursors_advance_only_on_success(tmp_path):
     assert r.returncode == 0, r.stdout + r.stderr
     st = json.loads((root / "data/state.json").read_text())
     assert st["block_cursor"] == 2 and st["status_cursor"] == 8
+
+
+def test_coverage_ledger_stamps_swept_blocks(tmp_path):
+    """A successful merge stamps the emphasized blocks + always-on F in state.coverage."""
+    root = make_repo(tmp_path)
+    run_dir = write_run(root, candidates=[], day="2026-06-15", meta={
+        "runner": "test", "emphasized_blocks": ["A", "B"],
+        "queries_run": ["q1"], "candidates_evaluated": 0,
+    })
+    r = run_script("validate_merge.py", "--run-dir", str(run_dir), "--root", str(root), "--runner", "test")
+    assert r.returncode == 0, r.stdout + r.stderr
+    cov = json.loads((root / "data/state.json").read_text())["coverage"]
+    today = date.today().isoformat()
+    assert cov["A"] == today and cov["B"] == today and cov["F"] == today
+
+
+def test_plan_run_flags_stale_coverage(tmp_path):
+    """plan_run flags blocks never swept (or older than the staleness window)."""
+    root = make_repo(tmp_path)
+    # One merge stamps A, B, F — leaving G (a real block in SEED_QUERIES) never swept.
+    run_dir = write_run(root, candidates=[], day="2026-06-15", meta={
+        "runner": "test", "emphasized_blocks": ["A", "B"],
+        "queries_run": ["q1"], "candidates_evaluated": 0,
+    })
+    assert run_script("validate_merge.py", "--run-dir", str(run_dir), "--root", str(root)).returncode == 0
+    p = run_script("plan_run.py", "--root", str(root))
+    assert p.returncode == 0, p.stderr
+    plan = json.loads(p.stdout)
+    stale = {s["block"] for s in plan["stale_coverage"]}
+    assert "G" in stale          # never swept → flagged
+    assert "A" not in stale      # swept this run → fresh
+    assert "coverage" in plan and plan["coverage"]["A"] == date.today().isoformat()

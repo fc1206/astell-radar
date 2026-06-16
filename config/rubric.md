@@ -26,6 +26,15 @@ Astell (astell.space) = an intelligence layer over a company's tools. Ingests co
 - **Cube** → Tier 3 / infra. Semantic-layer plumbing.
 - **Granola** → Tier 1 / chief-of-staff. Meeting wedge, but explicit "enterprise context layer" pivot + APIs. Trajectory counts, not just today's perimeter.
 
+## Source quality & evidence
+
+Precision is about what gets *registered*, never about what gets *considered* — a low-footprint, non-US, or wrong-vocabulary company is exactly what we exist to catch, so breadth of consideration stays wide (Tanderrum). Once considered, hold registered entries to higher evidence:
+
+- **Prefer primary evidence:** the company's own site, its YC / Crunchbase / LinkedIn company page, or a named funding announcement. Listicles, "top 10" roundups, and SEO content farms are **lead generation only** — use them to find names, then verify against a primary source before registering.
+- **Lift the exact domain** from the funding-DB / press page rather than guessing a homepage (WebFetch can't open a URL that didn't appear in search results).
+- **Thin / unverifiable but plausible → `watch-unconfirmed`** in `run_meta.json` notes, not a registry row. No live evidence URL, no entry.
+- **Region is not a tier signal.** Non-US / non-English origin does not lower a tier — score on mechanics only. If anything, an overseas company that hits the lane deserves *extra* scrutiny, because that's the class we've missed before.
+
 ## What does NOT belong in the registry
 
 Pure model providers, RAG tutorials, agencies/consultancies, open-source libraries without a company, products with no working website AND no funding/launch evidence (note them in SCANLOG as "watch-unconfirmed" instead).

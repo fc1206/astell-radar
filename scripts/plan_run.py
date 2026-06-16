@@ -56,12 +56,35 @@ def main():
         for i in range(min(batch, len(sweepable)))
     ]
 
+    # --- coverage ledger: flag query blocks not swept within the staleness window ---
+    # Breadth is guaranteed by cadence + this check, not by per-run volume. A block
+    # going stale means either it is being skipped or the radar has stopped running;
+    # the agent folds stale blocks into its wildcards (see .claude/commands/scan.md).
+    stale_days = state.get("coverage_stale_days", 18)
+    coverage = state.get("coverage", {})
+    today = date.today()
+    stale_coverage = []
+    for b in blocks:
+        last = coverage.get(b)
+        if last is None:
+            stale_coverage.append({"block": b, "last_swept": None, "days_since": None})
+            continue
+        try:
+            days = (today - date.fromisoformat(last)).days
+        except ValueError:
+            days = None
+        if days is None or days > stale_days:
+            stale_coverage.append({"block": b, "last_swept": last, "days_since": days})
+
     print(json.dumps({
-        "run_date": date.today().isoformat(),
+        "run_date": today.isoformat(),
         "always_block": ALWAYS_BLOCK,
         "emphasized_blocks": emphasized,
         "status_targets": targets,
         "registry_size": len(rows),
+        "coverage": coverage,
+        "coverage_stale_days": stale_days,
+        "stale_coverage": stale_coverage,
         "known_domains": known_domains,
     }, indent=2))
 

@@ -1,17 +1,28 @@
 # Query Battery
 
-Edit freely — this file is the harness's search brain. `scripts/plan_run.py` parses block IDs from `## Block X:` headers; keep that format. `{year}`, `{month}` are filled in by the agent at run time.
+Edit freely — this file is the harness's search brain. `scripts/plan_run.py` parses block IDs from `## Block X:` headers; keep that format (one capital letter, then a colon — extra text after the colon is fine). `{year}`, `{month}`, `{current batch}` are filled in by the agent at run time.
 
-**Per run:** Block F always (pick 4) + the two emphasized blocks from `plan_run.py` (pick 5 each) + 2 wildcard queries the agent invents based on recent findings + the status sweep. ~22 searches total. Full block coverage every 3 runs.
+**Two lanes, tuned independently so precision never costs breadth:**
+
+- **Lane 1 — precision (Blocks A–E, G):** source-targeted queries that reliably surface real companies. Favor `site:` and named venues; lift exact domains from the result pages. Sharpen these freely.
+- **Lane 2 — recall safety-net (Block F always-on + Block H regional):** the wide net that exists to catch low-footprint, wrong-vocabulary, non-US entrants — the Tanderrum class. This lane is *allowed* to be noisy; that's its job. **Never trim it for cleanliness.**
+
+**Per run:** Block F always (pick 4) + the two emphasized blocks from `plan_run.py` (pick ~5 each) + 2 wildcards the agent invents from recent findings + the status sweep. ~22 searches total. Full block coverage every 4 runs. `plan_run.py` emits a **coverage ledger** and flags any block gone stale (default >18 days) — if it reports `stale_coverage`, fold the stalest block/region into your wildcards that run. Breadth is guaranteed by cadence + this ledger, not by per-run volume.
 
 **Tuning log (append lessons here):**
 - 2026-06-10: "Glean alternative" class queries = highest yield (every entrant writes a vs-Glean page). Generic "AI work assistant funding {year}" = noise. Architectural-primitive queries (context graph, memory layer) catch what category queries miss (found Interloom, Cognee). Named-company status queries are the only way to catch acquisitions (Sana, Unleash) and Tanderrum-class invisibles. Product Hunt "AI chief of staff" category page = goldmine. YC: query named-concept ("YC {batch} company brain"), not batch listings.
-- 2026-06-10 (run 3, blocks C/D): Block C commitment/brief vocabulary earns its keep — "AI tracks commitments across Slack email" surfaced Claryti (cross-tool decision tracking, the cleanest C hit). Block D agent-vocabulary queries ("AI agents knowledge graph", "organizational memory AI agents") now mostly route to the memory-INFRA cluster (Zep, Mem0, Supermemory, Cognee) rather than application-layer rivals — treat D as an infra-radar, tier against Cognee. "multiplayer AI agents" = pure Dust echo (already tracked). Consumer chief-of-staff (TwinMind/Poppy/Orchid) and code-agent infra (Potpie/CopilotKit) are recurring D/C noise — skip fast. Status sweep again ~0 yield when registry last_checked == today (only Microsoft Work IQ APIs GA was new); confirms low-ROI on same-day re-runs.
+- 2026-06-10 (run 3, blocks C/D): Block C commitment/brief vocabulary earns its keep — "AI tracks commitments across Slack email" surfaced Claryti (cross-tool decision tracking, the cleanest C hit). Block D agent-vocabulary queries ("AI agents knowledge graph", "organizational memory AI agents") now mostly route to the memory-INFRA cluster (Zep, Mem0, Supermemory, Cognee) rather than application-layer rivals — treat D as an infra-radar, tier against Cognee. "multiplayer AI agents" = pure Dust echo (already tracked). Consumer chief-of-staff (TwinMind/Poppy/Orchid) and code-agent infra (Potpie/CopilotKit) are recurring D/C noise — skip fast.
 - 2026-06-10 (run 2): Block A self-vocabulary now nearly pure noise — "Glean alternatives/competitors" and "enterprise search startup" surface only listicles + already-tracked rows; the lane's obvious names are saturated. Block B data-vocabulary still earns its keep (found Dot, Querio via "conversational BI" / "AI data analyst funding"). Best ROI this run was the Product Hunt "AI chief of staff" wildcard — caught Town ($55M Series A, same day) and Pancake. Lean wildcards toward PH/launch venues + funding-news; trim generic Block A category queries. Status sweep added nothing: registry was already current on all 8 targets — when registry last_checked == today, status sweep is low-yield.
+- 2026-06-15 (blocks E/G): Architectural-primitive + funding/launch was the high-yield combo. Block E ("company brain"/"context graph") and the YC RFS query surfaced the whole Summer-2026 "Company Brain" cluster (Hyperspell → T1, Hyper, Cerenovus, Savant) plus funded context-graph plays (Jedify $24M Series A w/ Snowflake Ventures, Solid $20M seed w/ Team8/SignalFire). "Context graph" is now the cross-vocabulary category term — worth a standing wildcard. Plumbing lesson: WebFetch only retrieves URLs that appeared in WebSearch results — can't fetch a guessed homepage; verify candidates via the press/listicle URLs the search returns, and lift exact domains from funding-DB pages (thesaasnews → soliddata.io, startupmag → xmemory.ai). Status sweep paid off this run (registry was 5 days stale): TDX 2026 Slackbot default-provisioning, Atlassian Team '26 Teamwork Graph/Rovo Max, and OpenAI Workspace Agents all landed since baseline — re-confirms the sweep is only low-yield when last_checked == today.
+- 2026-06-15 (refactor): split the battery into Lane 1 (precision) / Lane 2 (recall safety-net); added **Block H (geographic / non-US)** — the actual Tanderrum gap (Melbourne, no US press) — and a **coverage ledger** in `state.json` that `plan_run.py` uses to flag any block unswept >18d. Source-targeted the funding/launch block with `site:` venue queries (PH/HN/YC/funding DBs) and generalized the vs-Glean winner into a per-Tier-1 "vs X" query in Block F. Added the noise-skip list below — stop re-litigating confirmed out-of-lane tools each run.
 
-- 2026-06-15 (blocks E/G): Block E (architectural primitives) was the run's whole yield — "organizational memory"/"AI memory layer"/"tacit knowledge"/"company brain" surfaced Sentra (memory-vocabulary clone of the open-loop wedge, best find), Jedify (via "context graph", $24M A), plus the infra cluster. Block F was pure noise again — every query returned only listicles + already-tracked names; the lookalike lane is saturated, keep F to the 4-query floor. "company brain" is now a YC S26 RFS term, so the query pulls RFS essays/exemplars (Cerenovus, already tracked) more than net-new cos — pair it with a funding/launch qualifier. Status sweep DID pay this run (caught Salesforce→Doti, the 4th direct-search acquisition) — contradicts the same-day-zero pattern because targets were 5 days stale, not same-day; status sweep earns its keep whenever last_checked != today.
+## Standing wildcards (keep one in rotation every run)
 
-## Block A: self-vocabulary (work-tool language)
+- `"context graph" OR "company brain"` + (funding OR launch OR startup) {year} — now the cross-vocabulary category term
+- whatever the last 1–2 changelog entries flag as moving (a pivot, a fresh raise, a new vocabulary)
+- the stalest block/region from `plan_run.py`'s `stale_coverage`, if any
+
+## Block A: self-vocabulary (work-tool language) — Lane 1
 
 - enterprise search startup {year}
 - AI work assistant for companies new startup
@@ -20,7 +31,7 @@ Edit freely — this file is the harness's search brain. `scripts/plan_run.py` p
 - "connect Slack Notion Linear" AI assistant
 - company knowledge AI startup {year}
 
-## Block B: data-vocabulary (Tanderrum's cluster)
+## Block B: data-vocabulary (Tanderrum's cluster) — Lane 1
 
 - conversational BI startup {year}
 - agentic analytics platform new
@@ -29,7 +40,7 @@ Edit freely — this file is the harness's search brain. `scripts/plan_run.py` p
 - "chat with your data" enterprise startup
 - AI data analyst startup {year}
 
-## Block C: chief-of-staff / memory vocabulary
+## Block C: chief-of-staff / memory vocabulary — Lane 1
 
 - AI chief of staff startup {year}
 - AI executive assistant team startup funding
@@ -38,7 +49,7 @@ Edit freely — this file is the harness's search brain. `scripts/plan_run.py` p
 - AI tracks commitments across Slack email
 - proactive AI work assistant startup
 
-## Block D: agent-vocabulary (Dust/Coworker cluster)
+## Block D: agent-vocabulary (Dust/Coworker cluster) — Lane 1
 
 - enterprise AI agent platform company context startup
 - AI agents company knowledge graph
@@ -46,7 +57,7 @@ Edit freely — this file is the harness's search brain. `scripts/plan_run.py` p
 - organizational memory AI agents startup
 - AI agent platform "all your tools" startup
 
-## Block E: architectural primitives
+## Block E: architectural primitives — Lane 1
 
 - "context graph" startup
 - "organizational memory" AI startup
@@ -54,23 +65,35 @@ Edit freely — this file is the harness's search brain. `scripts/plan_run.py` p
 - tacit knowledge AI enterprise
 - "AI memory layer" enterprise startup funding
 
-## Block F: lookalikes + listicles (ALWAYS RUN)
+## Block F: lookalikes + listicles + ego (Lane 2 — ALWAYS RUN)
 
 - Glean alternatives {year}
 - Glean competitors {year}
 - Dropbox Dash alternative
 - Astell alternative   ← ego search; anyone comparing against us
-- best enterprise search tools {year}
-- "vs Glean"
+- "vs Glean" OR "vs Dust" OR "vs Coworker" OR "vs Granola"   ← per-Tier-1 comparison pages; every real entrant writes one
+- best enterprise search OR "AI work assistant" tools {year}
+- AI "company brain" OR enterprise search startup (Europe OR India OR Australia OR Israel)   ← light regional touch every run
 
-## Block G: funding + launch venues
+## Block G: funding + launch venues — Lane 1 (source-targeted)
 
-- enterprise search seed round {month} {year}
-- "context layer" OR "context graph" funding {year}
-- AI knowledge management raised {year} techcrunch
+- site:producthunt.com AI chief of staff OR enterprise search OR "company brain"
+- site:news.ycombinator.com Show HN enterprise search OR knowledge OR "context graph"
 - YC {current batch} company brain OR knowledge graph OR enterprise search
-- Product Hunt AI chief of staff new launches
-- Show HN enterprise search {year}
+- "context layer" OR "context graph" funding {year} (techcrunch OR theinformation OR thesaasnews)
+- enterprise search OR "AI knowledge" seed OR "series A" raised {month} {year}
+- AI work assistant OR enterprise search acquisition OR acquired {year}
+
+## Block H: geographic / non-US (Lane 2 — recall; rotate one region per run)
+
+The Tanderrum gap: a wrong-vocabulary, no-funding, non-US company is invisible to generic + US-funding search. Rotate the region across runs so each gets covered.
+
+- AI enterprise search OR "company brain" startup Australia OR New Zealand {year}
+- enterprise AI assistant OR knowledge graph startup India OR Singapore {year}
+- AI "context" OR "knowledge" enterprise startup Europe OR UK OR Germany {year}
+- AI enterprise knowledge OR agent startup Israel {year} (Team8 OR funding)
+- LinkedIn "launched globally" OR "now live" AI company knowledge OR context (no funding/press)   ← catches Tanderrum-style social-only launches
+- (non-English) when a region surfaces a hit, re-run one query in that region's language
 
 ## Status sweep (every run)
 
@@ -78,3 +101,12 @@ For each of the ~8 round-robin targets from `plan_run.py`:
 - `"{name}" funding OR acquired OR acquisition OR shutdown OR pivot {year}`
 
 Material changes (new round, acquisition, death, repositioning toward Astell's lane) go in `status_updates.json`.
+
+## Known noise — skip fast (NOT a block; do not re-evaluate unless trajectory changes)
+
+Confirmed out-of-lane in prior runs — recognize and move on, don't spend fetch budget. Re-check ONLY if one pivots toward cross-tool team intelligence (the Granola lesson: trajectory counts):
+
+- **Consumer / individual chief-of-staff & memory:** TwinMind, Poppy, Orchid, Cleo, Mina, Soff, Alfred, Curiosity (individual cross-tool search)
+- **Code / dev-agent infra:** Potpie, CopilotKit, Cala, Lovelace, Tabnine
+- **Pure echoes of tracked players:** "multiplayer AI agents" → Dust; generic "AI work assistant funding {year}" → noise
+- **Out-of-lane infra / observability:** Milestone (agent ROI), Starburst/Trino (data-federation), Entropy Data (data-contract infra)

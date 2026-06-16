@@ -23,6 +23,7 @@ REQUIRED = ["name", "domain", "tier", "cluster", "status", "stage", "hq", "found
 FIELDNAMES = ["domain", "name", "tier", "cluster", "status", "stage", "hq", "founded",
               "first_seen", "last_checked", "what", "why_tier", "evidence_url", "notes"]
 UPDATABLE = {"tier", "cluster", "status", "stage", "what", "why_tier", "evidence_url", "notes"}
+ALWAYS_BLOCK = "F"  # always-run recall safety-net block; stamped in the coverage ledger every run
 
 
 def norm_domain(d: str) -> str:
@@ -191,6 +192,11 @@ def main():
     st["block_cursor"] = st.get("block_cursor", 0) + st.get("emphasis_per_run", 2)
     st["status_cursor"] = st.get("status_cursor", 0) + st.get("status_batch", 8)
     st["last_run"], st["last_runner"] = run_date, args.runner
+    # --- coverage ledger: stamp the blocks this run actually swept (emphasized + always-on F) ---
+    cov = st.get("coverage", {})
+    for b in list(meta.get("emphasized_blocks", [])) + [ALWAYS_BLOCK]:
+        cov[str(b)] = run_date
+    st["coverage"] = cov
     st_path.write_text(json.dumps(st, indent=2) + "\n", encoding="utf-8")
 
     print(f"MERGED: +{len(added)} companies, {len(updated)} updates, "

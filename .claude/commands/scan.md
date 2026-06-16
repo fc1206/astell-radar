@@ -10,13 +10,15 @@ Run one radar cycle. Follow exactly; budgets are caps, not targets.
 python3 scripts/plan_run.py
 ```
 
-Gives you: `run_date`, `emphasized_blocks`, `status_targets` (~8 companies), `known_domains`. Create `runs/<run_date>/`. Read `config/queries.md` and `config/rubric.md`.
+Gives you: `run_date`, `emphasized_blocks`, `status_targets` (~8 companies), `known_domains`, and the **coverage ledger** (`coverage` + `stale_coverage` — blocks not swept within the staleness window). Create `runs/<run_date>/`. Read `config/queries.md` and `config/rubric.md`.
 
 ## 2. Discovery sweep (≤16 WebSearch calls)
 
 Run: 4 queries from Block F (always) + ~5 from each emphasized block + 2 wildcard queries you compose yourself (base them on the tuning log and anything notable from recent changelog entries; fill `{year}`/`{month}`/`{current batch}` with today's values).
 
-From results, collect candidate companies — actual companies with domains, not articles or features. Ignore anything whose normalized domain is in `known_domains`.
+If `plan_run.py` reported `stale_coverage`, spend at least one of your 2 wildcards on the stalest block or region listed — that's how breadth stays guaranteed run-to-run.
+
+From results, collect candidate companies — actual companies with domains, not articles or features. Ignore anything whose normalized domain is in `known_domains`. Recognize and skip the "Known noise" list at the bottom of `config/queries.md` without spending fetch budget on it.
 
 ## 3. Verify + score (≤10 WebFetch calls)
 
