@@ -2,7 +2,7 @@
 
 **System of record:** `registry.csv` (count on the Last-scan line below, auto-updated). This file is the narrative read; the CSV is the data. Updated by every `/scan` run — newest changelog entry first.
 
-**Last full baseline:** 2026-06-10 · **Last scan:** 2026-06-15 (github) · **Tracked:** 92 companies
+**Last full baseline:** 2026-06-10 · **Last scan:** 2026-06-16 (recovery) · **Tracked:** 97 companies
 
 ---
 
@@ -71,6 +71,10 @@ Melbourne, ~2020, 2–6 people, no disclosed funding, no Crunchbase, no G2, no p
 ---
 
 ## Changelog
+
+### 2026-06-16 — scan (recovery)
+**⚠ NEW TIER 1:** Hyperspell (hyperspell.com)
+Added: Hyperspell (T1, direct); Hyper (T2, direct); Solid (T2, data-intel); Atomicwork (T2, employee-assist); xmemory (T2, infra)
 
 ### 2026-06-15 — scan (github)
 **⚠ NEW TIER 1:** Sentra (sentra.app), PipesHub (pipeshub.com), Doti (doti.ai)
