@@ -4,6 +4,13 @@ What changed, why it matters to Astell, what to do about it. Derived against `co
 
 <!-- entries below -->
 
+## 2026-06-18 — digest (github)
+
+### 1. WisdomAI is a $73M sign the data-vocabulary lane is annexing "context layer" — Astell's own phrase
+**Signal:** WisdomAI (wisdom.ai) closed a $50M Series A (Kleiner Perkins + Nvidia's NVentures, Nov 2025) on top of a $23M Coatue seed — $73M total — for NL analytics that reasons across structured, unstructured and "dirty" data through what it markets as an "enterprise context layer," with autonomous agents surfacing opportunities/risks/trends across ~40 enterprise customers including Cisco and ConocoPhillips (https://techcrunch.com/2025/11/12/ai-data-startup-wisdomai-has-raised-another-50m-led-by-kleiner-nvidia/).
+**Why it matters to Astell:** The standing read names data (Tanderrum/Omni) as one of the four vocabularies converging on Astell's promise. WisdomAI is now the best-funded entrant in that lane and has taken the literal phrase "context layer" while claiming the structured+unstructured span Astell sells — making "context layer" a contested, well-capitalized term in front of the same Fortune 500 buyers. That is a positioning collision on pillar 2, not just another data-analyst tool.
+**Action:** Add WisdomAI as the funded anchor of the data-vocabulary column in the four-vocabularies battlecard and ship a one-page teardown by 2026-06-30 that pressure-tests one claim — does its "enterprise context layer" actually track cross-tool open loops (decisions, owners, drift) or does it stop at warehouse queries? — and fixes Astell's reply line ("open-loop graph over work tools" vs "context layer over the warehouse").
+
 ## 2026-06-16 — digest (recovery)
 
 ### 1. Hyperspell is the closest single-product Astell clone yet — and it forces the API-vs-app decision now

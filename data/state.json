@@ -1,12 +1,14 @@
 {
   "schema": 1,
-  "block_cursor": 8,
-  "status_cursor": 32,
+  "block_cursor": 10,
+  "status_cursor": 40,
   "status_batch": 8,
   "emphasis_per_run": 2,
-  "last_run": "2026-06-16",
-  "last_runner": "recovery",
+  "last_run": "2026-06-18",
+  "last_runner": "github",
   "coverage": {
-    "F": "2026-06-16"
+    "F": "2026-06-18",
+    "B": "2026-06-18",
+    "C": "2026-06-18"
   }
 }

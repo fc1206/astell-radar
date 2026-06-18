@@ -1,0 +1,25 @@
+{
+  "runner": "github",
+  "emphasized_blocks": ["B", "C"],
+  "queries_run": [
+    "Glean alternatives 2026",
+    "\"vs Glean\" OR \"vs Dust\" OR \"vs Coworker\" AI work assistant 2026",
+    "best enterprise search OR \"AI work assistant\" tools 2026",
+    "AI \"company brain\" OR enterprise search startup Europe OR India OR Australia OR Israel 2026",
+    "conversational BI startup 2026",
+    "agentic analytics platform new startup 2026",
+    "enterprise data intelligence platform startup natural language",
+    "AI data analyst startup funding 2026",
+    "\"chat with your data\" enterprise startup 2026",
+    "AI chief of staff startup 2026",
+    "AI executive assistant team startup funding 2026",
+    "decision tracking AI tool teams commitments across Slack email",
+    "proactive AI work assistant startup 2026",
+    "\"memory API for agents\" OR \"memory layer\" enterprise context startup funding 2026 (wildcard)",
+    "\"context graph\" OR \"company brain\" startup funding launch 2026 (wildcard)",
+    "WisdomAI enterprise analytics structured unstructured data startup funding (domain-confirm)",
+    "status sweep x8: Aisera, Leena AI, Writer, Kore.ai, Box AI/Box Agent, ClickUp Brain, Guru, Zoom AI Companion"
+  ],
+  "candidates_evaluated": 24,
+  "notes": "Registered 3: WisdomAI (T2 data-intel, $73M), Knowi (T2 data-intel, agentic BI), Knowlee (T2 direct, EU cross-tool agent platform). Status sweep: NO material changes — registry already current on all 8 targets (Kore.ai Jan-2026 Series D, Box Agent Apr-2026, Qatalog->ClickUp acquisition, Zoom 3.0 MCP, Aisera acquisition all recorded); confirms tuning-log lesson that the sweep is low-yield when last_checked is recent. watch-unconfirmed: Tanka (tanka.ai) — homepage JS-empty/loading placeholders, search snippets describe cross-tool team memory across Slack/Gmail/Notion but unverifiable; Hapax (domain unconfirmed) — proactive AI that observes team work and auto-builds automations, banking origin now broader enterprise, no funding/domain verified; Letta (letta.com) — MemGPT-lineage agent-memory infra, well-known funded peer of Zep/Mem0 but no live URL fetched this run. Skipped: Docket (docket.io, sales/marketing-bounded 'agentic marketing' -> T3 vertical), Samta.ai (AI product-engineering services/consultancy + vertical products -> out of lane), Menza/Mito (vertical/dev T3). Consolidation signal: Nerve (AI chief-of-staff that took action across tools) acqui-hired by OpenAI Feb 2026 — dead/absorbed, no live site, noted not registered."
+}

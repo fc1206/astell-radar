@@ -1,0 +1,44 @@
+[
+  {
+    "name": "WisdomAI",
+    "domain": "wisdom.ai",
+    "tier": "2",
+    "cluster": "data-intel",
+    "status": "active",
+    "stage": "series-a",
+    "hq": "unknown",
+    "founded": "2023",
+    "what": "NL analytics that reasons across structured, unstructured and 'dirty' data via an 'enterprise context layer'; autonomous agents surface opportunities/risks/trends; LLM only writes the query to curb hallucination.",
+    "why_tier": "Canonical Tanderrum-class: warehouse/data-analyst vocabulary carrying Astell's promise, but explicitly claims unstructured data + a context layer. One connector-pivot from direct; pick higher.",
+    "evidence_url": "https://techcrunch.com/2025/11/12/ai-data-startup-wisdomai-has-raised-another-50m-led-by-kleiner-nvidia/",
+    "notes": "$73M total (Coatue $23M seed + Kleiner Perkins / NVentures $50M Series A, Nov 2025); CEO Soham Mazumdar (ex-Rubrik); ~40 enterprise customers (Cisco, ConocoPhillips, Patreon). HQ not confirmed (Bay Area)."
+  },
+  {
+    "name": "Knowi",
+    "domain": "knowi.com",
+    "tier": "2",
+    "cluster": "data-intel",
+    "status": "active",
+    "stage": "bootstrapped",
+    "hq": "unknown",
+    "founded": "unknown",
+    "what": "Agentic BI: 20+ specialized agents run the full analytics workflow from one NL prompt across 70+ data sources, no semantic layer/data modeling required; SOC 2 Type II, HIPAA-ready, proprietary in-house AI.",
+    "why_tier": "AI analyst bounded to databases/warehouses = Tier 2 data-intel per the Zenlytic calibration; agent-orchestrated but still structured-data-perimeter.",
+    "evidence_url": "https://www.knowi.com/natural-language-bi",
+    "notes": "Funding/founding not disclosed on site; positions against ThoughtSpot/Looker. Likely an older BI vendor that went AI-native — net-new to registry."
+  },
+  {
+    "name": "Knowlee",
+    "domain": "knowlee.ai",
+    "tier": "2",
+    "cluster": "direct",
+    "status": "active",
+    "stage": "bootstrapped",
+    "hq": "Italy",
+    "founded": "unknown",
+    "what": "Enterprise AI 'OS' that deploys custom AI agents to run recurring work across sales, recruiting, marketing, legal, finance and ops in parallel, connecting to existing CRM/tools with a full audit trail.",
+    "why_tier": "Horizontal cross-tool agent platform (Dust/Coworker family by mechanic) in EU/agent-execution vocabulary; one positioning pivot from a direct rival. Pick higher when torn.",
+    "evidence_url": "https://knowlee.ai/",
+    "notes": "Led by Matteo Mirabelli; VAT-registered in Italy; EU/GDPR/AI-Act compliance framing. No funding disclosed. Execution-automation emphasis (vs. a unified knowledge/context graph) — watch trajectory."
+  }
+]
