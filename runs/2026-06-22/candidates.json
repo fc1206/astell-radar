@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Adapt",
+    "domain": "adapt.com",
+    "tier": "1",
+    "cluster": "direct",
+    "status": "active",
+    "stage": "unknown",
+    "hq": "unknown",
+    "founded": "unknown",
+    "what": "AI 'company brain' in Slack and on the web that connects HubSpot, Salesforce, Notion, Gmail, Linear + warehouses/BI/help-desk to answer questions and run skills/workflows; permission-aware, audit logging, SOC2 Type II.",
+    "why_tier": "Cross-SaaS context layer that answers and acts over many work tools for whole teams (Ask>Connect>Reason>Act) — a prospect could plausibly choose this vs Astell; passes the T1 test on mechanics.",
+    "evidence_url": "https://adapt.com/",
+    "notes": "Funding stage/HQ/founded not disclosed on site; pricing tiers + SOC2 Type II suggest funded. Found via Product Hunt + Block E 'company brain' wildcard."
+  },
+  {
+    "name": "Relevance AI",
+    "domain": "relevanceai.com",
+    "tier": "2",
+    "cluster": "direct",
+    "status": "active",
+    "stage": "series-b",
+    "hq": "Sydney, AU",
+    "founded": "2020",
+    "what": "No-code / drag-and-drop / MCP platform to build, govern and monitor AI agents across 1,000+ apps (HubSpot, Salesforce, Gmail, LinkedIn); autonomy levels L1-L4; customers incl. Canva.",
+    "why_tier": "Horizontal cross-tool agent platform (Dust/Coworker family) but automation-first rather than knowledge/context-first — one pivot from Astell's lane. Australian, surfaced via the stale-coverage AU wildcard.",
+    "evidence_url": "https://relevanceai.com/",
+    "notes": "HQ Australia (OnSearch Pty Ltd). Series B ~$15M per references. Net-new despite being a well-established AU player — gap caught by the regional sweep."
+  },
+  {
+    "name": "eesel AI",
+    "domain": "eesel.ai",
+    "tier": "2",
+    "cluster": "employee-assist",
+    "status": "active",
+    "stage": "unknown",
+    "hq": "Sydney, AU",
+    "founded": "unknown",
+    "what": "Autonomous AI agents that ingest company knowledge (Slack, Teams, Notion, Confluence, Google Drive, SharePoint, past tickets) and resolve tickets / answer questions; deploys in helpdesks (Zendesk, Intercom, Freshdesk), website chat, and internal Slack/Teams; pay-per-resolution.",
+    "why_tier": "Center of gravity is outward CX ticket deflection (T3), but it ingests cross-tool internal knowledge and ships an internal Slack/Teams knowledge assistant — one pivot from employee-assist, so scored higher per the torn-tier rule.",
+    "evidence_url": "https://eesel.ai/",
+    "notes": "HQ/founded not stated on homepage; grouped under Australian knowledge-search startups in the AU regional sweep. Watch for trajectory shift from CX toward internal company knowledge."
+  }
+]

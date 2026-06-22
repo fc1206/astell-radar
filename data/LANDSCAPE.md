@@ -2,7 +2,7 @@
 
 **System of record:** `registry.csv` (count on the Last-scan line below, auto-updated). This file is the narrative read; the CSV is the data. Updated by every `/scan` run — newest changelog entry first.
 
-**Last full baseline:** 2026-06-10 · **Last scan:** 2026-06-18 (github) · **Tracked:** 100 companies
+**Last full baseline:** 2026-06-10 · **Last scan:** 2026-06-22 (github) · **Tracked:** 103 companies
 
 ---
 
@@ -71,6 +71,10 @@ Melbourne, ~2020, 2–6 people, no disclosed funding, no Crunchbase, no G2, no p
 ---
 
 ## Changelog
+
+### 2026-06-22 — scan (github)
+**⚠ NEW TIER 1:** Adapt (adapt.com)
+Added: Adapt (T1, direct); Relevance AI (T2, direct); eesel AI (T2, employee-assist)
 
 ### 2026-06-18 — scan (github)
 Added: WisdomAI (T2, data-intel); Knowi (T2, data-intel); Knowlee (T2, direct)
