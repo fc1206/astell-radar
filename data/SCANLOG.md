@@ -43,3 +43,9 @@ Append-only. Every run writes an entry, including zero-find runs — written by 
 - Candidates evaluated: 14; net-new added: 3; status updates: 0
 - Escalations: 1
 - Notes: Registered: Adapt (T1/direct), Relevance AI (T2/direct, AU), eesel AI (T2/employee-assist, AU). Verified-out-of-lane (not registered): Tacit AI/tacitx.ai (Tier 3 industrial/manufacturing decision engine, vertical); Docket/docket.io (outward sales-CX website agent); Catalect/catalect.io (AI consultancy, no product); Engramme (Large Memory Models, Harvard spinout chasing $1B — consumer/model-infra cognition, out of lane); Sierra (outward CX agents, not in-lane). watch-unconfirmed: Foundation Capital is pushing a 'context graph' thesis and names portfolio cos building them (Maximor, PlayerZero, Tessera, Tonkean, Regie) — these read as vertical/point agents per the article, unverified against primary sources this run; revisit if any positions as a horizontal cross-tool context layer. Status sweep: zero material changes — Omni (Series C $120M/$1.5B + Explo acq) and TextQL (Series A $17M) were already current in the registry; Spinach/Fellow/Cognee/Credal/ThoughtSpot/Range unchanged. Re-confirms last_checked==recent -> low-yield rule. Note: a separate 'Range' (AI wealth management, McLean VA, $60M Series C) is NOT range.co the productivity tool — do not conflate.
+
+## 2026-06-23 (local)
+- Queries run: 1 (blocks: F + F + wildcards)
+- Candidates evaluated: 6; net-new added: 3; status updates: 3
+- Escalations: 1
+- Notes: Recovery of the 2026-06-18/06-22 cowork-bridge lineage that diverged from canonical GitHub main. Unions 3 stranded companies (agent.nexus, tacnode.io, zaro.ai incl. a Tier-1) + enriches 3 (adapt.com, knowlee.ai, wisdom.ai) with richer cowork-run detail. Per the Hyperspell precedent: validated union, never a reset.

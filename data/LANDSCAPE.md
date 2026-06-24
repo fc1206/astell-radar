@@ -2,7 +2,7 @@
 
 **System of record:** `registry.csv` (count on the Last-scan line below, auto-updated). This file is the narrative read; the CSV is the data. Updated by every `/scan` run — newest changelog entry first.
 
-**Last full baseline:** 2026-06-10 · **Last scan:** 2026-06-22 (github) · **Tracked:** 103 companies
+**Last full baseline:** 2026-06-10 · **Last scan:** 2026-06-23 (local) · **Tracked:** 106 companies
 
 ---
 
@@ -71,6 +71,11 @@ Melbourne, ~2020, 2–6 people, no disclosed funding, no Crunchbase, no G2, no p
 ---
 
 ## Changelog
+
+### 2026-06-23 — scan (local)
+**⚠ NEW TIER 1:** Zaro (zaro.ai)
+Added: Nexus (T2, direct); Tacnode (T2, infra); Zaro (T1, direct)
+Updated: Adapt — reconcile richer detail from the parallel 2026-06-18/06-22 cowork run (no-loss union); Knowlee — reconcile richer detail from the parallel 2026-06-18/06-22 cowork run (no-loss union); WisdomAI — reconcile richer detail from the parallel 2026-06-18/06-22 cowork run (no-loss union)
 
 ### 2026-06-22 — scan (github)
 **⚠ NEW TIER 1:** Adapt (adapt.com)

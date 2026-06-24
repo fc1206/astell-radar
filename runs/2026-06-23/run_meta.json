@@ -1,0 +1,11 @@
+{
+  "runner": "local",
+  "emphasized_blocks": [
+    "F"
+  ],
+  "queries_run": [
+    "divergence-reconciliation (no live search)"
+  ],
+  "candidates_evaluated": 6,
+  "notes": "Recovery of the 2026-06-18/06-22 cowork-bridge lineage that diverged from canonical GitHub main. Unions 3 stranded companies (agent.nexus, tacnode.io, zaro.ai incl. a Tier-1) + enriches 3 (adapt.com, knowlee.ai, wisdom.ai) with richer cowork-run detail. Per the Hyperspell precedent: validated union, never a reset."
+}

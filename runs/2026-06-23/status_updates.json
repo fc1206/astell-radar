@@ -1,0 +1,33 @@
+[
+  {
+    "domain": "adapt.com",
+    "fields_changed": {
+      "stage": "seed",
+      "what": "'Company brain' \u2014 one shared context layer for every employee and every agent, used in Slack and on the web. Connects all company tools (HubSpot, Stripe, Gmail, Salesforce, Notion, Linear, data warehouses, BI, help desk, payments), holds live cross-tool context across four faculties (Knowledge, Skills, Memory, Live search), reasons over it, takes action (answers across the stack, builds dashboards/internal apps, runs scheduled briefings), and cites its sources. Data stays private, isolated per-task sandboxes. Customers incl. Wander, RevSend, DoNotPay.",
+      "why_tier": "Cleanest direct clone to date: hits all four Astell pillars \u2014 ingest live context from every connected tool (1), one shared cross-tool context layer / 'company brain' (2), cites its sources (3), per-company isolated/permissioned sandboxes (4) \u2014 and self-positions explicitly against Glean ('search tools index and wait; Adapt holds live context, reasons over it, and takes action ... and cites its sources'). A prospect would plainly say 'we're choosing between this and Astell' -> Tier 1 / direct.",
+      "notes": "San Francisco, US; SOC 2 Type II; site footer 'Adapt - The Universal AI Agent'. Reportedly ~$10M seed co-led by Activant Capital + Headline (Susa Ventures participating) per barchart (https://www.barchart.com/story/news/242716 'Adapt Raises $10M Seed to Build the AI Computer for Business') \u2014 earlier 'AI computer for business' framing has since become 'company brain'; reconfirm funding/founders against a primary source next run. Founding year + team not disclosed on site. Featured on Product Hunt May 2026 (4.7 stars, 106 reviews)."
+    },
+    "change_summary": "reconcile richer detail from the parallel 2026-06-18/06-22 cowork run (no-loss union)",
+    "evidence_url": "https://adapt.com/"
+  },
+  {
+    "domain": "knowlee.ai",
+    "fields_changed": {
+      "what": "'Operating system for AI agents' running cross-vertical agent fleets (sales, talent acquisition, content intelligence, legal review) on an Enterprise Knowledge Graph + RAG 'Brain' that accumulates shared memory across all agents and all runs; AI-Act-shaped governance (risk level, data categories, human-oversight, approver as first-class data-model fields); EU-deployable (Hetzner / on-prem).",
+      "why_tier": "Agent-platform family (Dust/Coworker = T1) with a real cross-tool knowledge-graph + RAG-brain memory layer (pillar-2 mechanic), but self-positions as a vertical agent-fleet runner and explicitly NOT a knowledge/answers layer ('does not replace your search or collaboration layer'). One positioning step (team intelligence) from direct; vocabulary-over-mechanics caution (Coworker precedent) keeps it on the radar.",
+      "notes": "Verified via own-domain teardown https://www.knowlee.ai/blog/dust-tt-alternatives-2026 (reviews Knowlee among Dust alternatives, with a conflict-of-interest disclosure). EU legal entity; pricing on request (indicative low-five-figure EUR/yr). Stage inferred (no funding disclosed on site); HQ city + founding year not disclosed."
+    },
+    "change_summary": "reconcile richer detail from the parallel 2026-06-18/06-22 cowork run (no-loss union)",
+    "evidence_url": "https://knowlee.ai/"
+  },
+  {
+    "domain": "wisdom.ai",
+    "fields_changed": {
+      "what": "AI Data Analyst that replaces dashboards with conversational + proactive agents reasoning over structured AND unstructured ('dirty') data; each agent runs on a persistent 'Enterprise Context Layer' that retains corporate/team/user context and is delivered where work happens - Slack, Salesforce, email. LLM only writes the warehouse query, so hallucinations yield a bad query, not a false answer. ~40 enterprise customers incl. Cisco, ConocoPhillips, Patreon, Descope.",
+      "why_tier": "Canonical Tanderrum pattern: data/BI vocabulary ('AI Data Analyst', 'agentic data insights') wrapping a cross-tool Enterprise Context Layer (Slack/Salesforce/email) plus unstructured docs - Astell's promise in warehouse vocabulary. Center of gravity is still the analyst/BI surface (cf. Zenlytic, Tanderrum = T2/data-intel), so T2 not T1; one connector-set/positioning step from direct.",
+      "notes": "Ex-Rubrik founders (Soham Mazumdar CEO + Guilherme Menezes, Sharvanath Pathak, Kapil Chhabra). $73M total: $50M Series A Nov 2025 led by Kleiner Perkins + NVIDIA NVentures (Coatue, Madrona, Menlo, GTM, Latitude); $23M seed May 2025 led by Coatue. Funding ref: https://techcrunch.com/2025/11/12/ai-data-startup-wisdomai-has-raised-another-50m-led-by-kleiner-nvidia/ . Predates the radar baseline (seed May 2025) yet was absent from the registry - a genuine prior miss now caught."
+    },
+    "change_summary": "reconcile richer detail from the parallel 2026-06-18/06-22 cowork run (no-loss union)",
+    "evidence_url": "https://techcrunch.com/2025/11/12/ai-data-startup-wisdomai-has-raised-another-50m-led-by-kleiner-nvidia/"
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Nexus",
+    "domain": "agent.nexus",
+    "tier": "2",
+    "cluster": "direct",
+    "status": "active",
+    "stage": "seed",
+    "hq": "unknown",
+    "founded": "unknown",
+    "what": "Autonomous agent platform (product 'Cue') paired with forward-deployed engineers; agents complete end-to-end business workflows across 4,000+ enterprise systems with full read/write and deploy into the channels teams already use (Slack, Teams, WhatsApp, email, phone, web). Positions explicitly as 'AI that completes work, not answers questions'. Customers incl. Orange Group, Lambda.",
+    "why_tier": "Torn T2/T3 -> higher per hard rule 4. Execution-first horizontal agent platform (the opposite wedge from Astell's intelligence/open-loops), but its huge cross-tool read/write reach + in-channel deployment put it one positioning pivot ('surface cross-tool intelligence') from the lane. Not single-feature/pure-infra, so Tier-3's buckets don't fit; scored T2 to err against a miss.",
+    "evidence_url": "https://agent.nexus/blog/nexus-raises-4-3m-seed-shipping-cue",
+    "notes": "Nexus Enterprises, Inc.; $4.3M seed (announced 2026; 'Cue' shipped). Verified via own-domain pages agent.nexus/blog/dust-alternatives + the seed announcement. Founders/HQ/founding year not surfaced; customer base (Orange + European telecoms) suggests an EU footprint. Execution-first - flag for trajectory toward intelligence/answers."
+  },
+  {
+    "name": "Tacnode",
+    "domain": "tacnode.io",
+    "tier": "2",
+    "cluster": "infra",
+    "status": "active",
+    "stage": "unknown",
+    "hq": "unknown",
+    "founded": "unknown",
+    "what": "'Context Lake' \u2014 distributed, PostgreSQL-compatible context infrastructure that keeps AI agents and services operating on the same shared, live, and semantic context (sub-second freshness, strong consistency, temporal versioning). Positioned as a feature-store / vector-DB / lakehouse alternative delivering 'decision coherence'; workloads = shared multi-agent memory, live feature serving, decision-time analytics. In production at a large food-delivery platform; on AWS Marketplace; SOC 2 Type II + HIPAA.",
+    "why_tier": "Infra selling Astell's shared-context-store pillar a la carte \u2014 'a shared context layer where all decision-makers incl. stateful AI agents operate on the same reality.' Same infra cluster as Cognee/Zep/Mem0/xmemory (Tier 2 / infra). Center of gravity is data-plumbing (a real-time DB for agents), not an application-layer answers/intelligence rival, so T2 not T1; one positioning step from the lane.",
+    "evidence_url": "https://www.tacnode.io/product",
+    "notes": "Emerged from stealth Jan 2026 (Tacnode Context Lake). Domain is tacnode.io (the 2026-06-15 memory note's 'tacnode.com' was wrong). Built on PostgreSQL wire protocol + Apache Iceberg; separation of compute/storage. Launch/press: https://www.globenewswire.com/news-release/2026/01/20/3221772/0/en/Tacnode-Emerges-from-Stealth-to-Launch-Tacnode-Context-Lake-a-Shared-Context-Layer-for-AI-Agents.html . Funding amount/stage + HQ city not disclosed in surfaced sources; founding ~2024-25 (copyright '2025 Tacnode Inc.'). Prior-miss recovery from the 2026-06-15 dual-run."
+  },
+  {
+    "name": "Zaro",
+    "domain": "zaro.ai",
+    "tier": "1",
+    "cluster": "direct",
+    "status": "active",
+    "stage": "pre-seed",
+    "hq": "London, GB",
+    "founded": "unknown",
+    "what": "AI-native workspace that connects a company's enterprise data, workflows and AI tools into a single shared context layer that retains and reuses organizational knowledge; that context then powers custom apps built from the company's own files and decisions. Replaces a sprawl of separate AI tools with one company-owned workspace; routes routine tasks to cheaper models (claims ~10x cost cut vs frontier-only).",
+    "why_tier": "Shared cross-tool context layer retaining/reusing organizational knowledge across enterprise data + workflows + tools = Astell's exact promise (pillars 1-2), with a 'company-owned, take-your-context-with-you' independence wedge. Direct lane; a prospect would choose between this and Astell -> Tier 1 / direct (rule 4: higher when torn vs. the agent-workspace framing).",
+    "evidence_url": "https://tech.eu/2026/06/09/zaro-lands-51m-to-build-the-next-layer-of-enterprise-ai/",
+    "notes": "Out of stealth 2026-06-09; $5.1M pre-seed led by Cherry Ventures, angels incl. Thomas Wolf (Hugging Face co-founder), Thomas Dohmke (GitHub CEO), Charlie Songhurst, Mandeep Singh, and Convergence co-founders Marvin Purtorab + Andy Toulis. 8-person team; 5 ex-Convergence (acquired by Salesforce; shipped Agentforce). Cherry's own post: https://cherry.vc/news/shared-memory-for-ai-agents . Prior-miss recovery: caught by the 2026-06-15 Thursday bridge but missed by that day's merged run. Founding year not disclosed."
+  }
+]
