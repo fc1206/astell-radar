@@ -62,7 +62,7 @@ If a query class clearly over/under-performed, append one dated line to the tuni
 
 ## 10. Finish
 
-- **CI (GitHub Actions):** stop here — the workflow commits, pushes, notifies Slack, and opens any escalation issue.
-- **Local/Cowork:** `git add -A && git commit -m "scan: <run_date> (<runner>)"`. Do not push.
+- **CI (GitHub Actions):** stop here — the workflow commits, pushes, notifies Slack, and opens any escalation issue. **This is the only runner that writes `main`.**
+- **Local/Cowork:** do NOT commit or merge to `main`. `validate_merge.py` will refuse to write unless `RADAR_ALLOW_WRITE=1` (it's the single-writer guard that stops parallel runners from diverging the registry — see CLAUDE.md rule 7). A local run is for testing only; let GitHub Actions produce the canonical scan. If you must reconcile, `git pull` then union through `validate_merge.py` with `RADAR_ALLOW_WRITE=1`, never `git reset`.
 
 Never edit `data/registry.csv`, `data/SCANLOG.md`, `data/state.json`, `data/DIGEST.md`, or the LANDSCAPE changelog by hand — only the scripts write those.

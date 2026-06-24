@@ -10,6 +10,7 @@ Competitive-landscape radar for Astell (astell.space). Runs `/scan` twice a week
 4. **When torn between tiers, pick the higher.** A false positive costs a minute; a miss costs what Tanderrum cost (see `config/rubric.md`).
 5. **Do not message anyone or call external services** beyond WebSearch/WebFetch. Delivery is files + git only.
 6. If `validate_merge.py` fails, fix your JSON per its error messages and re-run it. Max 2 retries; if still failing, write the errors to `runs/<date>/FAILED.md` and stop.
+7. **GitHub Actions is the SOLE writer of `main`.** `validate_merge.py` now refuses to write unless it is the canonical runner (`GITHUB_ACTIONS` set) or you explicitly opt in with `RADAR_ALLOW_WRITE=1`. This is enforced, not advisory — it exists because parallel non-CI runners (the cowork bridge) twice diverged the registry and nearly lost a Tier-1 (Hyperspell 2026-06-16, the 06-23 union). A local `/scan` is for testing only: it must not commit to `main`. To reconcile two lineages, always use a **validated union** through `validate_merge.py` (with `RADAR_ALLOW_WRITE=1` after `git pull`), never `git reset`.
 
 ## Output schemas
 

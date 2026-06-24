@@ -7,6 +7,7 @@ must merge cleanly once the model emits it.
 """
 import csv
 import json
+import os
 import subprocess
 import sys
 from datetime import date
@@ -51,10 +52,21 @@ def make_repo(tmp_path: Path) -> Path:
     return root
 
 
-def run_script(script: str, *args):
+def run_script(script: str, *args, clean=False):
+    """Run a script as a subprocess.
+
+    By default authorize writes (these tests are intentional local writes) via
+    RADAR_ALLOW_WRITE=1. Pass clean=True to strip both that override and
+    GITHUB_ACTIONS, simulating an unauthorized non-canonical runner (the bridge).
+    """
+    if clean:
+        env = {k: v for k, v in os.environ.items()
+               if k not in ("GITHUB_ACTIONS", "RADAR_ALLOW_WRITE")}
+    else:
+        env = {**os.environ, "RADAR_ALLOW_WRITE": "1"}
     return subprocess.run(
         [sys.executable, str(REPO / "scripts" / script), *args],
-        capture_output=True, text=True,
+        capture_output=True, text=True, env=env,
     )
 
 
@@ -128,6 +140,18 @@ def test_duplicate_domain_rejected_with_normalization(tmp_path):
     assert r.returncode == 1
     assert "already in registry" in r.stdout
     assert read_registry(root) == before  # nothing written on failure
+
+
+def test_refuses_non_canonical_writer(tmp_path):
+    """Single-writer guard: an unauthorized non-CI run (the cowork bridge) must
+    refuse to write, so it can never re-create the 2026-06-16/06-23 divergence."""
+    root = make_repo(tmp_path)
+    run_dir = write_run(root, candidates=[])
+    before = read_registry(root)
+    r = run_script("validate_merge.py", "--run-dir", str(run_dir), "--root", str(root), clean=True)
+    assert r.returncode != 0
+    assert "REFUSING TO WRITE" in (r.stdout + r.stderr)
+    assert read_registry(root) == before  # nothing written when not the canonical runner
 
 
 def test_invalid_enums_rejected(tmp_path):

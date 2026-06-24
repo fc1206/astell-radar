@@ -11,6 +11,7 @@ Usage: python scripts/validate_merge.py --run-dir runs/2026-06-15 [--root .] [--
 import argparse
 import csv
 import json
+import os
 import re
 import sys
 from datetime import date
@@ -99,6 +100,20 @@ def main():
     ap.add_argument("--root", default=".")
     ap.add_argument("--runner", default="local")
     args = ap.parse_args()
+
+    # --- single canonical writer guard (divergence prevention; 2026-06-16 + 2026-06-23 incidents) ---
+    # Only GitHub Actions (the canonical runner) may write the system of record. An
+    # automatic non-CI run — e.g. the cowork bridge — writing here is exactly what
+    # created the divergent lineages that twice nearly lost a Tier-1 competitor.
+    # Intentional local maintenance must opt in explicitly (and `git pull` first).
+    if not os.environ.get("GITHUB_ACTIONS") and os.environ.get("RADAR_ALLOW_WRITE") != "1":
+        sys.exit(
+            "REFUSING TO WRITE: not the canonical runner (GitHub Actions).\n"
+            "Automatic non-CI runs (e.g. the cowork bridge) must not write the registry — that\n"
+            "caused the 2026-06-16 (Hyperspell) and 2026-06-23 divergences. GitHub Actions is the\n"
+            "sole writer. For an intentional, pull-first local run, set RADAR_ALLOW_WRITE=1."
+        )
+
     root, run_dir = Path(args.root), Path(args.run_dir)
     run_date = date.today().isoformat()
 

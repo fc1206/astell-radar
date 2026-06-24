@@ -37,6 +37,14 @@ jobs:
             --dangerously-skip-permissions \
             --verbose
 
+      - name: Post-run health check (catch silent degradation)
+        run: |
+          latest=$(ls -d runs/*/ 2>/dev/null | sort | tail -1)
+          if [ -z "$latest" ]; then
+            echo "::error::no run directory produced — scan did not run"; exit 1
+          fi
+          python3 scripts/check_run_health.py --run-dir "${latest%/}" --expect-date "$(basename "$latest")"
+
       - name: Render HTML report
         run: python3 scripts/render_report.py
 
@@ -87,6 +95,11 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: python3 scripts/notify_slack.py || echo "::warning::slack notify failed (scan itself succeeded)"
 
+      - name: Heartbeat — scan alive (dead-man switch)
+        env:
+          HEARTBEAT_URL: ${{ secrets.HEARTBEAT_URL }}
+        run: python3 scripts/heartbeat.py --status success || echo "::warning::heartbeat failed (scan itself succeeded)"
+
       - name: Open issue on new Tier 1
         env:
           GH_TOKEN: ${{ secrets.RADAR_TOKEN || github.token }}
@@ -103,3 +116,9 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.RADAR_TOKEN || github.token }}
         run: gh issue create --title "Radar scan FAILED ($(date -u +%F))" --body "The scheduled scan did not complete. Check the Actions log. A silent radar is a blind radar — fix before the next cycle." || true
+
+      - name: Heartbeat — signal failure (dead-man switch)
+        if: failure()
+        env:
+          HEARTBEAT_URL: ${{ secrets.HEARTBEAT_URL }}
+        run: python3 scripts/heartbeat.py --status fail || true
