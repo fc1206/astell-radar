@@ -1,0 +1,11 @@
+{
+  "_doc": "Astell's brand for the internal radar deliverable (report, digest, emails).",
+  "product": "Astell Radar",
+  "company": "Astell",
+  "tagline": "The company-brain landscape, swept twice a week — what changed and what to do about it.",
+  "accent": "#fc4b32",
+  "accent_2": "#2f6df0",
+  "logo": "",
+  "theme": "light",
+  "repo_url": "https://github.com/fc1206/astell-radar"
+}
