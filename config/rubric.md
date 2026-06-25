@@ -32,6 +32,7 @@ Precision is about what gets *registered*, never about what gets *considered* �
 
 - **Prefer primary evidence:** the company's own site, its YC / Crunchbase / LinkedIn company page, or a named funding announcement. Listicles, "top 10" roundups, and SEO content farms are **lead generation only** — use them to find names, then verify against a primary source before registering.
 - **Lift the exact domain** from the funding-DB / press page rather than guessing a homepage (WebFetch can't open a URL that didn't appear in search results).
+- **Founding year ≠ batch / funding / launch year.** Record `founded` only from an explicit founding-year source (about page, Crunchbase / LinkedIn "Founded", incorporation record). Never infer it from a YC batch label (**F25 ≠ founded 2025**), a first-funding date, an OSS-project launch, or a rebrand year. This conflation is the single most common error in the registry — a 2026-06-24 audit found ≈half of stated founding years wrong from exactly this. No primary founding-year source → record `unknown` (honest beats wrong).
 - **Thin / unverifiable but plausible → `watch-unconfirmed`** in `run_meta.json` notes, not a registry row. No live evidence URL, no entry.
 - **Region is not a tier signal.** Non-US / non-English origin does not lower a tier — score on mechanics only. If anything, an overseas company that hits the lane deserves *extra* scrutiny, because that's the class we've missed before.
 
