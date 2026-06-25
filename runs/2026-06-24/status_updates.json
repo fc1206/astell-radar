@@ -1,0 +1,11 @@
+[
+  {
+    "domain": "hyperspell.com",
+    "fields_changed": {
+      "stage": "pre-seed",
+      "founded": "2024"
+    },
+    "change_summary": "Correct stage (seed->pre-seed, per Crunchbase pre-seed round hyperspell-pre-seed led by pre-seed specialist Afore Capital + Pioneer Fund + Y Combinator) and founded (2025->2024, per YC company page; the 2025 came from conflating the YC F25 batch label with the founding year)",
+    "evidence_url": "https://www.ycombinator.com/companies/hyperspell"
+  }
+]

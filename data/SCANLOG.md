@@ -49,3 +49,9 @@ Append-only. Every run writes an entry, including zero-find runs — written by 
 - Candidates evaluated: 6; net-new added: 3; status updates: 3
 - Escalations: 1
 - Notes: Recovery of the 2026-06-18/06-22 cowork-bridge lineage that diverged from canonical GitHub main. Unions 3 stranded companies (agent.nexus, tacnode.io, zaro.ai incl. a Tier-1) + enriches 3 (adapt.com, knowlee.ai, wisdom.ai) with richer cowork-run detail. Per the Hyperspell precedent: validated union, never a reset.
+
+## 2026-06-24 (local)
+- Queries run: 0 (blocks:  + F + wildcards)
+- Candidates evaluated: 0; net-new added: 0; status updates: 1
+- Escalations: 0
+- Notes: Targeted correction run (not a full scan): fix Hyperspell stage (seed->pre-seed) and founded (2025->2024) per an independent 20-agent verification on 2026-06-24 confirming both facts against YC's company page and Crunchbase. Local reconcile via RADAR_ALLOW_WRITE=1 after git pull (rule #7). Also widened validate_merge.py UPDATABLE to permit `founded` corrections.

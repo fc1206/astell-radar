@@ -1,0 +1,7 @@
+{
+  "runner": "local",
+  "emphasized_blocks": [],
+  "queries_run": [],
+  "candidates_evaluated": 0,
+  "notes": "Targeted correction run (not a full scan): fix Hyperspell stage (seed->pre-seed) and founded (2025->2024) per an independent 20-agent verification on 2026-06-24 confirming both facts against YC's company page and Crunchbase. Local reconcile via RADAR_ALLOW_WRITE=1 after git pull (rule #7). Also widened validate_merge.py UPDATABLE to permit `founded` corrections."
+}

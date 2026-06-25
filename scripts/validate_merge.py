@@ -23,7 +23,11 @@ STATUSES = {"active", "acquired", "dead", "feature"}
 REQUIRED = ["name", "domain", "tier", "cluster", "status", "stage", "hq", "founded", "what", "why_tier", "evidence_url"]
 FIELDNAMES = ["domain", "name", "tier", "cluster", "status", "stage", "hq", "founded",
               "first_seen", "last_checked", "what", "why_tier", "evidence_url", "notes"]
-UPDATABLE = {"tier", "cluster", "status", "stage", "what", "why_tier", "evidence_url", "notes"}
+# `founded` is normally immutable, but it is correctable here: data-entry errors
+# (e.g. conflating a YC batch label like F25 with the founding year) are legitimate
+# fixes a scan should be able to push through the canonical writer. Identity fields
+# (domain, name) and system timestamps (first_seen, last_checked) stay off-limits.
+UPDATABLE = {"tier", "cluster", "status", "stage", "founded", "what", "why_tier", "evidence_url", "notes"}
 ALWAYS_BLOCK = "F"  # always-run recall safety-net block; stamped in the coverage ledger every run
 
 

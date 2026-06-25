@@ -2,7 +2,7 @@
 
 **System of record:** `registry.csv` (count on the Last-scan line below, auto-updated). This file is the narrative read; the CSV is the data. Updated by every `/scan` run — newest changelog entry first.
 
-**Last full baseline:** 2026-06-10 · **Last scan:** 2026-06-23 (local) · **Tracked:** 106 companies
+**Last full baseline:** 2026-06-10 · **Last scan:** 2026-06-24 (local) · **Tracked:** 106 companies
 
 ---
 
@@ -71,6 +71,9 @@ Melbourne, ~2020, 2–6 people, no disclosed funding, no Crunchbase, no G2, no p
 ---
 
 ## Changelog
+
+### 2026-06-24 — scan (local)
+Updated: Hyperspell — Correct stage (seed->pre-seed, per Crunchbase pre-seed round hyperspell-pre-seed led by pre-seed specialist Afore Capital + Pioneer Fund + Y Combinator) and founded (2025->2024, per YC company page; the 2025 came from conflating the YC F25 batch label with the founding year)
 
 ### 2026-06-23 — scan (local)
 **⚠ NEW TIER 1:** Zaro (zaro.ai)
