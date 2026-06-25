@@ -1,0 +1,158 @@
+[
+  {
+    "domain": "hyperspell.com",
+    "fields_changed": {
+      "stage": "pre-seed",
+      "founded": "2024"
+    },
+    "change_summary": "accuracy-audit correction (2026-06-24): stage: seed -> pre-seed (Crunchbase pre-seed round, Afore Capital); founded: 2025 -> 2024 (YC company page; 2025 = F25 batch label)",
+    "evidence_url": "https://www.ycombinator.com/companies/hyperspell"
+  },
+  {
+    "domain": "granola.ai",
+    "fields_changed": {
+      "founded": "2023",
+      "hq": "London, GB"
+    },
+    "change_summary": "accuracy-audit correction (2026-06-24): founded: claimed 2022 -> actual 2023 (first product launched May 2024; do not record a pre-launch year); hq: claimed San Francisco, US -> actual London, GB (confirmed by lead investor Index Ventures 'built out of London' and UK press callin",
+    "evidence_url": "https://techcrunch.com/2026/03/25/granola-raises-125m-hits-1-5b-valuation-as-it-expands-from-meeting-notetaker-to-enterprise-ai-app/"
+  },
+  {
+    "domain": "gosearch.ai",
+    "fields_changed": {
+      "stage": "series-a",
+      "founded": "2016",
+      "hq": "San Jose, US"
+    },
+    "change_summary": "accuracy-audit correction (2026-06-24): founded: claimed 2022 -> actual 2016 (2022 is the Series A year; classic batch/funding-year-as-founding error); stage: claimed seed -> actual Series A; hq: claimed San Francisco, US -> actual San Jose, US; funding (implied seed) -> actual $",
+    "evidence_url": "https://www.golinks.com/blog/golinks-raises-series-a/"
+  },
+  {
+    "domain": "ambient.us",
+    "fields_changed": {
+      "stage": "series-a",
+      "founded": "2023"
+    },
+    "change_summary": "accuracy-audit correction (2026-06-24): stage: claimed seed -> actual Series A (round 2025-04-22, ~$4.63M total raised); founded: claimed 2022 -> actual 2023 (Ambient entity; product announced Jun-Jul 2023); funding/stage: registry is one round stale — Ambient closed a Series A o",
+    "evidence_url": "https://www.ambient.us/"
+  },
+  {
+    "domain": "jared.so",
+    "fields_changed": {
+      "stage": "pre-seed",
+      "founded": "2025",
+      "evidence_url": "https://www.producthunt.com/products/jared-so"
+    },
+    "change_summary": "accuracy-audit correction (2026-06-24): founded: claimed 2024 -> actual 2025 (Antler ONE cohort joined ~Sept 2025; product launched Mar 2026); hq: claimed unknown -> actual Barcelona, ES (Humalike hackerhouse); stage: claimed seed -> actual pre-seed (Antler ONE accelerator; ~$500",
+    "evidence_url": "https://www.producthunt.com/products/jared-so"
+  },
+  {
+    "domain": "thunai.ai",
+    "fields_changed": {
+      "hq": "Branchburg, US"
+    },
+    "change_summary": "accuracy-audit correction (2026-06-24): hq: claimed Chennai, IN -> corporate HQ is Branchburg, NJ, US (Chennai is the engineering/origin base, not the registered HQ); stage: claimed series-a -> unverified; no credible source confirms a Series A (Tracxn states no funding raised / ",
+    "evidence_url": "https://www.producthunt.com/products/thunai"
+  },
+  {
+    "domain": "range.co",
+    "fields_changed": {
+      "stage": "seed",
+      "founded": "2017"
+    },
+    "change_summary": "accuracy-audit correction (2026-06-24): stage: claimed series-a -> actual seed (only round is the $6M seed led by General Catalyst, Feb 2020; the 'Series A' results in search belong to a different company, the wealthtech range.com); founded: claimed 2018 -> actual 2017 (Golden: A",
+    "evidence_url": "https://techcrunch.com/2020/02/14/general-catalyst-leads-6-million-investment-in-team-productivity-startup-range/"
+  },
+  {
+    "domain": "mindsdb.com",
+    "fields_changed": {
+      "stage": "series-a"
+    },
+    "change_summary": "accuracy-audit correction (2026-06-24): stage: claimed series-b -> actual series-a (latest round is Series A; NVIDIA round was part of seed/Series-A, ~$53.7M total, no Series B on record)",
+    "evidence_url": "https://www.prnewswire.com/news-releases/mindsdb-launches-anton-an-open-source-autonomous-bi-agent-for-conversational-analytics-302732433.html"
+  },
+  {
+    "domain": "getwren.ai",
+    "fields_changed": {
+      "founded": "2018"
+    },
+    "change_summary": "accuracy-audit correction (2026-06-24): founded: claimed 2023 -> actual 2018 (Canner, the entity behind the Taiwan HQ); Wren AI product open-sourced April 2024 — 2023 matches neither; stage: claimed bootstrapped -> contestable; Wren AI took no dedicated round but parent Canner In",
+    "evidence_url": "https://technode.global/2022/03/08/taiwan-data-mesh-solution-provider-canner-raises-3-5m-series-pre-a-funding-led-by-taiwania-capital/"
+  },
+  {
+    "domain": "kinetica.com",
+    "fields_changed": {
+      "stage": "series-a",
+      "founded": "2009"
+    },
+    "change_summary": "accuracy-audit correction (2026-06-24): founded: claimed 2013 -> actual 2009 (as GIS Federal; rebranded Kinetica 2016); stage: claimed series-b -> actual series-a (no Series B documented; last raise Aug 2020); hq: claimed US -> more precisely Arlington, VA, US",
+    "evidence_url": "https://www.kinetica.com/press-releases/kinetica-launches-native-large-language-model-for-language-to-sql-on-enterprise-data/"
+  },
+  {
+    "domain": "cube.dev",
+    "fields_changed": {
+      "stage": "series-b",
+      "founded": "2016"
+    },
+    "change_summary": "accuracy-audit correction (2026-06-24): stage: series-a -> series-b ($25M round closed June 2024, Databricks Ventures; Crunchbase classifies it Series B); founded: 2019 -> 2016 (company/entity Cube Dev, formerly Statsbot, founded 2016; 2019 is only when Cube.js open-source projec",
+    "evidence_url": "https://cube.dev/"
+  },
+  {
+    "domain": "lindy.ai",
+    "fields_changed": {
+      "stage": "series-b"
+    },
+    "change_summary": "accuracy-audit correction (2026-06-24): stage: claimed series-a -> actual series-b ($35M round, ~$225M post-money, ~$49.9M total); what: claimed '1600+ integrations' -> unsupported by live site (site cites 400K+ professionals, no integration count); what: claimed 'no-code AI agen",
+    "evidence_url": "https://www.lindy.ai/"
+  },
+  {
+    "domain": "martin.app",
+    "fields_changed": {
+      "evidence_url": "https://www.trymartin.com/"
+    },
+    "change_summary": "accuracy-audit correction (2026-06-24): domain: claimed martin.app -> actual trymartin.com (martin.app is not the company's domain; registry note 'may be trymartin.com' is confirmed correct); status/pivot: claimed active personal-assistant competitor -> company pivoted and rebran",
+    "evidence_url": "https://www.trymartin.com/"
+  },
+  {
+    "domain": "fyxer.com",
+    "fields_changed": {
+      "stage": "series-b"
+    },
+    "change_summary": "accuracy-audit correction (2026-06-24): stage: claimed seed -> actual series-b ($30M Series B Sept 2025, led by Madrona/Lakestar; ~$40M total); notes/funding: claimed blank -> actual Series B $30M (Sept 2025) + ~$10M Series A (Mar 2025, 20VC); angel Marc Benioff; ~$17M ARR by Aug",
+    "evidence_url": "https://www.fyxer.com/blog/series-b-statement"
+  },
+  {
+    "domain": "cora.so",
+    "fields_changed": {
+      "founded": "2024",
+      "evidence_url": "https://every.to/p/introducing-cora-manage-your-inbox-with-ai"
+    },
+    "change_summary": "accuracy-audit correction (2026-06-24): domain: claimed cora.so -> actual cora.computer; evidence_url: claimed https://virtualworkforce.ai/fyxer-vs-cora/ (describes a DIFFERENT 'CORA', a military/defense cyber-threat platform that the page explicitly says is 'not an AI email mana",
+    "evidence_url": "https://every.to/p/introducing-cora-manage-your-inbox-with-ai"
+  },
+  {
+    "domain": "shortwave.com",
+    "fields_changed": {
+      "founded": "2020"
+    },
+    "change_summary": "accuracy-audit correction (2026-06-24): founded: claimed 2021 -> actual 2020 (company existed in 2020; Series A closed April 2020 per TechCrunch/Lightspeed; 2021 appears to be a guess between the 2020 founding and the Feb 2022 funding announcement)",
+    "evidence_url": "https://www.shortwave.com/"
+  },
+  {
+    "domain": "mem0.ai",
+    "fields_changed": {
+      "stage": "series-a",
+      "founded": "2023"
+    },
+    "change_summary": "accuracy-audit correction (2026-06-24): stage: claimed seed -> actual Series A (raised $20M Series A, announced Oct 2025); founded: claimed 2024 -> actual 2023 (Embedchain June 2023; YC page lists 2023; 2024 is the rebrand/launch year); funding/notes: 'funding not on page / stage",
+    "evidence_url": "https://techcrunch.com/2025/10/28/mem0-raises-24m-from-yc-peak-xv-and-basis-set-to-build-the-memory-layer-for-ai-apps/"
+  },
+  {
+    "domain": "pipeshub.com",
+    "fields_changed": {
+      "hq": "Seattle, US"
+    },
+    "change_summary": "accuracy-audit correction (2026-06-24): stage: claimed bootstrapped -> actual venture-backed seed (AI2 Incubator; Grayscale Ventures investor), pre-revenue; hq: claimed San Francisco, US -> actual Seattle, US (relocated from SF after AI2 Incubator funding; Dover, DE legal incorpo",
+    "evidence_url": "https://www.geekwire.com/2026/startup-radar-seattle-area-founders-use-ai-for-medical-records-gaming-mortgages-search-and-more/"
+  }
+]

@@ -72,6 +72,9 @@ Melbourne, ~2020, 2–6 people, no disclosed funding, no Crunchbase, no G2, no p
 
 ## Changelog
 
+### 2026-06-25 — correction (audit)
+Corrected: Granola — audit 2026-06-24: founded 2022→2023; hq San Francisco, US→London, GB; GoSearch — audit 2026-06-24: stage seed→series-a; founded 2022→2016; hq San Francisco, US→San Jose, US; Ambient — audit 2026-06-24: stage seed→series-a; founded 2022→2023; Jared — audit 2026-06-24: stage seed→pre-seed; founded 2024→2025; evidence→primary source; Thunai — audit 2026-06-24: hq Chennai, IN→Branchburg, US; Range — audit 2026-06-24: stage series-a→seed; founded 2018→2017; MindsDB — audit 2026-06-24: stage series-b→series-a; Wren AI — audit 2026-06-24: founded 2023→2018; Kinetica — audit 2026-06-24: stage series-b→series-a; founded 2013→2009; Cube — audit 2026-06-24: stage series-a→series-b; founded 2019→2016; Lindy — audit 2026-06-24: stage series-a→series-b; Martin — audit 2026-06-24: evidence→primary source; Fyxer — audit 2026-06-24: stage seed→series-b; Cora — audit 2026-06-24: founded 2024→2024; evidence→primary source; Shortwave — audit 2026-06-24: founded 2021→2020; Mem0 — audit 2026-06-24: stage seed→series-a; founded 2024→2023; PipesHub — audit 2026-06-24: hq San Francisco, US→Seattle, US
+
 ### 2026-06-25 — scan (github)
 **⚠ NEW TIER 1:** Atolio (atolio.com), Squirro (squirro.com)
 Added: Atolio (T1, direct); Squirro (T1, direct); Blockbrain (T2, direct)

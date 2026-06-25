@@ -1,0 +1,1 @@
+{"runner":"audit","emphasized_blocks":[],"queries_run":[],"candidates_evaluated":0,"notes":"Accuracy-audit corrections (2026-06-24): 17 rows (Hyperspell already fixed in 617e256). Source: workflow w8xf67mx3 verify+recheck. Applied via --corrections-only so scan cursors/coverage stay untouched."}

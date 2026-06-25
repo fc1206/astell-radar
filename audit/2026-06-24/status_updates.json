@@ -1,0 +1,149 @@
+[
+  {
+    "domain": "granola.ai",
+    "fields_changed": {
+      "founded": "2023",
+      "hq": "London, GB"
+    },
+    "change_summary": "audit 2026-06-24: founded 2022→2023; hq San Francisco, US→London, GB",
+    "evidence_url": "https://techcrunch.com/2026/03/25/granola-raises-125m-hits-1-5b-valuation-as-it-expands-from-meeting-notetaker-to-enterprise-ai-app/"
+  },
+  {
+    "domain": "gosearch.ai",
+    "fields_changed": {
+      "stage": "series-a",
+      "founded": "2016",
+      "hq": "San Jose, US"
+    },
+    "change_summary": "audit 2026-06-24: stage seed→series-a; founded 2022→2016; hq San Francisco, US→San Jose, US",
+    "evidence_url": "https://www.golinks.com/blog/golinks-raises-series-a/"
+  },
+  {
+    "domain": "ambient.us",
+    "fields_changed": {
+      "stage": "series-a",
+      "founded": "2023"
+    },
+    "change_summary": "audit 2026-06-24: stage seed→series-a; founded 2022→2023",
+    "evidence_url": "https://www.ambient.us/"
+  },
+  {
+    "domain": "jared.so",
+    "fields_changed": {
+      "stage": "pre-seed",
+      "founded": "2025",
+      "evidence_url": "https://www.producthunt.com/products/jared-so"
+    },
+    "change_summary": "audit 2026-06-24: stage seed→pre-seed; founded 2024→2025; evidence→primary source",
+    "evidence_url": "https://www.producthunt.com/products/jared-so"
+  },
+  {
+    "domain": "thunai.ai",
+    "fields_changed": {
+      "hq": "Branchburg, US"
+    },
+    "change_summary": "audit 2026-06-24: hq Chennai, IN→Branchburg, US",
+    "evidence_url": "https://www.producthunt.com/products/thunai"
+  },
+  {
+    "domain": "range.co",
+    "fields_changed": {
+      "stage": "seed",
+      "founded": "2017"
+    },
+    "change_summary": "audit 2026-06-24: stage series-a→seed; founded 2018→2017",
+    "evidence_url": "https://techcrunch.com/2020/02/14/general-catalyst-leads-6-million-investment-in-team-productivity-startup-range/"
+  },
+  {
+    "domain": "mindsdb.com",
+    "fields_changed": {
+      "stage": "series-a"
+    },
+    "change_summary": "audit 2026-06-24: stage series-b→series-a",
+    "evidence_url": "https://www.prnewswire.com/news-releases/mindsdb-launches-anton-an-open-source-autonomous-bi-agent-for-conversational-analytics-302732433.html"
+  },
+  {
+    "domain": "getwren.ai",
+    "fields_changed": {
+      "founded": "2018"
+    },
+    "change_summary": "audit 2026-06-24: founded 2023→2018",
+    "evidence_url": "https://technode.global/2022/03/08/taiwan-data-mesh-solution-provider-canner-raises-3-5m-series-pre-a-funding-led-by-taiwania-capital/"
+  },
+  {
+    "domain": "kinetica.com",
+    "fields_changed": {
+      "stage": "series-a",
+      "founded": "2009"
+    },
+    "change_summary": "audit 2026-06-24: stage series-b→series-a; founded 2013→2009",
+    "evidence_url": "https://www.kinetica.com/press-releases/kinetica-launches-native-large-language-model-for-language-to-sql-on-enterprise-data/"
+  },
+  {
+    "domain": "cube.dev",
+    "fields_changed": {
+      "stage": "series-b",
+      "founded": "2016"
+    },
+    "change_summary": "audit 2026-06-24: stage series-a→series-b; founded 2019→2016",
+    "evidence_url": "https://cube.dev/"
+  },
+  {
+    "domain": "lindy.ai",
+    "fields_changed": {
+      "stage": "series-b"
+    },
+    "change_summary": "audit 2026-06-24: stage series-a→series-b",
+    "evidence_url": "https://www.lindy.ai/"
+  },
+  {
+    "domain": "martin.app",
+    "fields_changed": {
+      "evidence_url": "https://www.trymartin.com/"
+    },
+    "change_summary": "audit 2026-06-24: evidence→primary source",
+    "evidence_url": "https://www.trymartin.com/"
+  },
+  {
+    "domain": "fyxer.com",
+    "fields_changed": {
+      "stage": "series-b"
+    },
+    "change_summary": "audit 2026-06-24: stage seed→series-b",
+    "evidence_url": "https://www.fyxer.com/blog/series-b-statement"
+  },
+  {
+    "domain": "cora.so",
+    "fields_changed": {
+      "founded": "2024",
+      "evidence_url": "https://every.to/p/introducing-cora-manage-your-inbox-with-ai"
+    },
+    "change_summary": "audit 2026-06-24: founded 2024→2024; evidence→primary source",
+    "evidence_url": "https://every.to/p/introducing-cora-manage-your-inbox-with-ai"
+  },
+  {
+    "domain": "shortwave.com",
+    "fields_changed": {
+      "founded": "2020"
+    },
+    "change_summary": "audit 2026-06-24: founded 2021→2020",
+    "evidence_url": "https://www.shortwave.com/"
+  },
+  {
+    "domain": "mem0.ai",
+    "fields_changed": {
+      "stage": "series-a",
+      "founded": "2023"
+    },
+    "change_summary": "audit 2026-06-24: stage seed→series-a; founded 2024→2023",
+    "evidence_url": "https://techcrunch.com/2025/10/28/mem0-raises-24m-from-yc-peak-xv-and-basis-set-to-build-the-memory-layer-for-ai-apps/"
+  },
+  {
+    "domain": "pipeshub.com",
+    "fields_changed": {
+      "hq": "Seattle, US"
+    },
+    "change_summary": "audit 2026-06-24: hq San Francisco, US→Seattle, US",
+    "evidence_url": "https://www.geekwire.com/2026/startup-radar-seattle-area-founders-use-ai-for-medical-records-gaming-mortgages-search-and-more/"
+  }
+]
