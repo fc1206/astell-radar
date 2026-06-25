@@ -1,0 +1,11 @@
+[
+  {
+    "domain": "databricks.com",
+    "fields_changed": {
+      "what": "AI/BI Genie now Generally Available on all clouds; adds Genie Deep Research (multi-step research plans), Genie Code GA, and a Managed MCP Server (beta) letting any agent ask natural-language data questions across Genie Spaces + Unity Catalog.",
+      "notes": "Conversational/agentic analytics bounded to the Lakehouse; MCP server opens NL data access to external agents."
+    },
+    "change_summary": "AI/BI Genie reached GA on all clouds and added agentic access (Deep Research + Managed MCP Server) at DAIS 2026.",
+    "evidence_url": "https://www.databricks.com/blog/aibi-genie-now-generally-available"
+  }
+]

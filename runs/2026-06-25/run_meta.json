@@ -1,0 +1,32 @@
+{
+  "runner": "github",
+  "emphasized_blocks": ["H", "I"],
+  "queries_run": [
+    "Glean alternatives 2026",
+    "\"vs Glean\" OR \"vs Dust\" OR \"vs Coworker\" enterprise AI assistant 2026",
+    "AI \"company brain\" OR enterprise search startup (Europe OR India OR Australia OR Israel) 2026",
+    "best enterprise search OR \"AI work assistant\" tools 2026",
+    "AI enterprise search OR \"company brain\" startup Australia OR New Zealand 2026",
+    "enterprise AI assistant OR knowledge graph startup India OR Singapore 2026",
+    "AI \"context\" OR \"knowledge\" enterprise startup Europe OR UK OR Germany 2026 funding",
+    "AI enterprise knowledge OR agent startup Israel 2026 Team8 OR funding",
+    "site:g2.com Glean OR Dust enterprise search alternatives compare",
+    "\"alternatives to\" Glean OR Dust OR Coworker company knowledge AI 2026 -site:g2.com",
+    "site:capterra.com OR site:sourceforge.net enterprise search OR \"AI knowledge\" alternatives 2026",
+    "\"context graph\" OR \"company brain\" startup funding OR launch 2026 (wildcard: standing)",
+    "site:producthunt.com AI \"company brain\" OR \"chief of staff\" OR enterprise knowledge 2026 (wildcard: stale Block G)",
+    "Atolio AI enterprise search platform company (verify)",
+    "Squirro enterprise AI search insights platform company (verify)",
+    "Blockbrain.ai enterprise AI agents knowledge product funding (verify)",
+    "status: Snowflake Intelligence Cortex 2026 GA/funding",
+    "status: Databricks AI/BI Genie 2026 GA",
+    "status: Coveo 2026 funding/acquisition",
+    "status: Lucidworks 2026 funding/acquisition",
+    "status: AlphaSense 2026 funding/valuation",
+    "status: Vanna AI 2026 funding/pivot",
+    "status: Atlan 2026 funding/Series C",
+    "status: Alation 2026 funding/IPO"
+  ],
+  "candidates_evaluated": 24,
+  "notes": "3 net-new registered: Atolio (T1, private/self-hosted enterprise search), Squirro (T1, Swiss enterprise GenAI search+KG), Blockbrain (T2, German expertise-capture+knowledge bots, EUR17.5M Series A). watch-unconfirmed: ChapsVision (FR enterprise search/data-intelligence group, surfaced in listicle, not primary-verified). OUT-OF-LANE/skipped: BAND (IL, $17M, agent-to-agent interop infra, not company-brain); Moveworks (employee-assist, acquired into ServiceNow 2025 — already covered by servicenow.com); Capacity/Sharpr/Bloomfire/AddSearch (Tier-3 KM/site-search, not registered for precision); Trusst AI, Marqo, Searchspring (AU CX/commerce search); CORE (IN consumer assistant); Stellar AI / Frontdesk AI (PH OKR/COO SMB tools); Perplexity Brain (feature of tracked Perplexity). DIGEST-FLAG (not registered, secondary-source only): Snowflake reportedly rebranded 'Snowflake Intelligence' -> 'Snowflake CoWork' (Cortex Code -> CoCo) at Summit 2026 + $200M OpenAI partnership + deepened Anthropic; agentic-control-plane positioning already in registry, rename needs primary confirmation. Status sweep low-yield: AlphaSense $350M/$7.5B round already captured in registry (only new = SuperAnalyst agent, no tier change); Coveo/Lucidworks/Vanna/Atlan/Alation no 2026 material change."
+}

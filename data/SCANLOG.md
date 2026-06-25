@@ -50,8 +50,8 @@ Append-only. Every run writes an entry, including zero-find runs — written by 
 - Escalations: 1
 - Notes: Recovery of the 2026-06-18/06-22 cowork-bridge lineage that diverged from canonical GitHub main. Unions 3 stranded companies (agent.nexus, tacnode.io, zaro.ai incl. a Tier-1) + enriches 3 (adapt.com, knowlee.ai, wisdom.ai) with richer cowork-run detail. Per the Hyperspell precedent: validated union, never a reset.
 
-## 2026-06-24 (local)
-- Queries run: 0 (blocks:  + F + wildcards)
-- Candidates evaluated: 0; net-new added: 0; status updates: 1
-- Escalations: 0
-- Notes: Targeted correction run (not a full scan): fix Hyperspell stage (seed->pre-seed) and founded (2025->2024) per an independent 20-agent verification on 2026-06-24 confirming both facts against YC's company page and Crunchbase. Local reconcile via RADAR_ALLOW_WRITE=1 after git pull (rule #7). Also widened validate_merge.py UPDATABLE to permit `founded` corrections.
+## 2026-06-25 (github)
+- Queries run: 24 (blocks: H, I + F + wildcards)
+- Candidates evaluated: 24; net-new added: 3; status updates: 1
+- Escalations: 2
+- Notes: 3 net-new registered: Atolio (T1, private/self-hosted enterprise search), Squirro (T1, Swiss enterprise GenAI search+KG), Blockbrain (T2, German expertise-capture+knowledge bots, EUR17.5M Series A). watch-unconfirmed: ChapsVision (FR enterprise search/data-intelligence group, surfaced in listicle, not primary-verified). OUT-OF-LANE/skipped: BAND (IL, $17M, agent-to-agent interop infra, not company-brain); Moveworks (employee-assist, acquired into ServiceNow 2025 — already covered by servicenow.com); Capacity/Sharpr/Bloomfire/AddSearch (Tier-3 KM/site-search, not registered for precision); Trusst AI, Marqo, Searchspring (AU CX/commerce search); CORE (IN consumer assistant); Stellar AI / Frontdesk AI (PH OKR/COO SMB tools); Perplexity Brain (feature of tracked Perplexity). DIGEST-FLAG (not registered, secondary-source only): Snowflake reportedly rebranded 'Snowflake Intelligence' -> 'Snowflake CoWork' (Cortex Code -> CoCo) at Summit 2026 + $200M OpenAI partnership + deepened Anthropic; agentic-control-plane positioning already in registry, rename needs primary confirmation. Status sweep low-yield: AlphaSense $350M/$7.5B round already captured in registry (only new = SuperAnalyst agent, no tier change); Coveo/Lucidworks/Vanna/Atlan/Alation no 2026 material change.
