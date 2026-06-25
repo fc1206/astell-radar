@@ -14,6 +14,8 @@ import re
 from datetime import date
 from pathlib import Path
 
+import score_axes  # sibling in scripts/; computes the map's breadth × action coordinates
+
 TIER_META = {
     "1": ("T1 · direct lane", "#ff5d5d"),
     "2": ("T2 · adjacent", "#5da9ff"),
@@ -56,6 +58,86 @@ def esc_keep_strong(s: str) -> str:
     return html.escape(s, quote=False)
 
 
+def competitive_map_html(rows, root: Path) -> str:
+    """Dark-themed 2x2 competitive map: every active Tier-1/2 plotted at its computed
+    (breadth x action) position from config/axes.json. Dots are fixed; Tier-1 labels
+    offset on leader lines (right-gutter for the dense corner) so nothing drifts. Optional
+    — returns '' on any failure rather than breaking the report."""
+    try:
+        cfg = score_axes.load_config(root, None)
+        on = [r for r in rows if r.get("status") == "active" and r.get("tier") in ("1", "2")]
+        data = []
+        for r in on:
+            b, a = score_axes.score_row(r, cfg)
+            meta = " · ".join(p for p in [r.get("stage", ""), r.get("hq", ""),
+                              (("est. " + r["founded"]) if r.get("founded") not in ("", "unknown") else "")]
+                              if p and p != "unknown")
+            data.append({"n": esc(r["name"]), "x": b, "y": a, "t": int(r["tier"]),
+                         "labeled": r["tier"] == "1", "m": esc(meta), "w": esc((r.get("what", "") or "")[:150])})
+        if not data:
+            return ""
+        data.sort(key=lambda c: c["labeled"])  # labeled paint on top
+        xa, ya = cfg["x_axis"], cfg["y_axis"]
+    except Exception as e:  # never let the map break the system-of-record report
+        return f"<!-- competitive map skipped: {esc(str(e))} -->"
+
+    tmpl = r"""<h2>Competitive map — __XL__ × __YL__</h2>
+<style>
+.cm{position:relative;height:480px;background:#0d1117;border:1px solid #21262d;border-radius:10px;overflow:hidden;}
+.cmq{position:absolute;background:#1b212a;}.cmv{left:50%;top:5%;bottom:9%;width:1px;}.cmh{top:50%;left:6%;right:4%;height:1px;}
+.cmax{position:absolute;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;}
+.cmx{left:84px;right:16px;bottom:10px;text-align:center;}.cmy{left:4px;top:50%;transform:translateY(-50%) rotate(-90deg);white-space:nowrap;}
+.cmlead{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+.cmdot{position:absolute;border-radius:50%;transform:translate(-50%,-50%);cursor:default;}
+.cmdot.t1{width:11px;height:11px;background:#ff5d5d;box-shadow:0 0 0 3px rgba(255,93,93,.13);}
+.cmdot.t2{width:9px;height:9px;background:#5da9ff;opacity:.85;}
+.cmlbl{position:absolute;transform:translate(-50%,-50%);font-size:11px;font-weight:600;white-space:nowrap;color:#e6edf3;background:rgba(13,17,23,.66);padding:1px 4px;border-radius:4px;cursor:default;}
+.cmtip{display:none;position:absolute;left:0;top:0;width:194px;background:#161b22;border:1px solid #30363d;border-radius:10px;padding:10px 12px;box-shadow:0 14px 32px -12px rgba(0,0,0,.6);z-index:40;transform:translate(-50%,12px);text-align:left;white-space:normal;}
+.cmdot:hover{z-index:30;}.cmdot:hover .cmtip{display:block;}
+.cmtn{font-weight:600;font-size:13px;display:flex;align-items:center;gap:6px;}
+.cmtc{font-size:10px;font-weight:600;padding:1px 6px;border-radius:5px;}.cmtc.t1{background:#ff5d5d22;color:#ff5d5d;}.cmtc.t2{background:#5da9ff22;color:#5da9ff;}
+.cmtm{color:#9aa3ad;font-size:11px;margin:3px 0 5px;}.cmtw{color:#bac3cc;font-size:11.5px;line-height:1.4;}
+.cmcap{color:#6b7280;font-size:12px;margin-top:8px;}
+</style>
+<div class="cm" id="cmap"><div class="cmq cmv"></div><div class="cmq cmh"></div>
+<div class="cmax cmx">__XLO__&nbsp;───→&nbsp;__XHI__</div><div class="cmax cmy">__YLO__&nbsp;───→&nbsp;__YHI__</div>
+<svg class="cmlead" id="cmlead"></svg></div>
+<div class="cmcap">__N__ active Tier-1/2 plotted by <strong>computed</strong> breadth × action (from <code>config/axes.json</code>, never hand-placed). Tier-1 labelled; hover any dot.</div>
+<script>(function(){
+var DATA=__DATA__,m=document.getElementById('cmap'),svg=document.getElementById('cmlead');
+function build(){var W=m.clientWidth,H=m.clientHeight;if(!W)return setTimeout(build,60);var PADX=86,PADY=40;
+ var ns=DATA.map(function(d){return {d:d,px:PADX+d.x/100*(W-PADX-20),py:H-PADY-d.y/100*(H-2*PADY)};});
+ ns.forEach(function(n){var dot=document.createElement('div');dot.className='cmdot t'+n.d.t;
+  dot.style.left=n.px+'px';dot.style.top=n.py+'px';
+  dot.innerHTML='<div class="cmtip"><div class="cmtn">'+n.d.n+' <span class="cmtc t'+n.d.t+'">T'+n.d.t+'</span></div><div class="cmtm">'+n.d.m+'</div><div class="cmtw">'+n.d.w+'</div></div>';
+  m.appendChild(dot);n.dot=dot;});
+ var L=ns.filter(function(n){return n.d.labeled;});
+ L.forEach(function(n){var el=document.createElement('div');el.className='cmlbl';el.textContent=n.d.n;m.appendChild(el);n.el=el;n.w=el.offsetWidth;n.h=el.offsetHeight;});
+ var GUT=L.filter(function(n){return n.d.x>=78;});       // dense corner -> right gutter
+ GUT.forEach(function(g){g.dir=1;g.lx=W-12-g.w/2;g.ly=g.py;});  // anchor at dot height (short lines)
+ var NEAR=L.filter(function(n){return n.d.x<78;});
+ NEAR.forEach(function(n){n.dir=n.px<W*0.5?-1:1;n.lx=n.px+n.dir*(n.w/2+14);n.ly=n.py;});
+ [GUT,NEAR].forEach(function(G){for(var it=0;it<240;it++){     // declutter each group vertically
+   for(var i=0;i<G.length;i++)for(var j=i+1;j<G.length;j++){
+     var a=G[i],b=G[j],dy=b.ly-a.ly,oy=(a.h/2+b.h/2+7)-Math.abs(dy);
+     if(oy>0&&Math.abs(b.lx-a.lx)<(a.w/2+b.w/2+12)){var s=oy/2*(dy<0?-1:1)||oy/2;a.ly-=s;b.ly+=s;}}
+   G.forEach(function(n){n.ly=Math.max(n.h/2+6,Math.min(H-n.h/2-26,n.ly));});}});
+ var SN='http://www.w3.org/2000/svg';
+ L.forEach(function(n){n.el.style.left=n.lx+'px';n.el.style.top=n.ly+'px';
+  var ex=n.lx-n.dir*(n.w/2+2),ln=document.createElementNS(SN,'line');
+  ln.setAttribute('x1',n.px);ln.setAttribute('y1',n.py);ln.setAttribute('x2',ex);ln.setAttribute('y2',n.ly);
+  ln.setAttribute('stroke',n.d.t===1?'rgba(255,93,93,.42)':'rgba(93,169,255,.42)');ln.setAttribute('stroke-width','1');svg.appendChild(ln);
+  n.el.addEventListener('mouseenter',function(){var t=n.dot.querySelector('.cmtip');if(t)t.style.display='block';});
+  n.el.addEventListener('mouseleave',function(){var t=n.dot.querySelector('.cmtip');if(t)t.style.display='none';});});}
+build();})();</script>
+"""
+    return (tmpl.replace("__DATA__", json.dumps(data, ensure_ascii=False))
+            .replace("__XL__", esc(xa["label"])).replace("__YL__", esc(ya["label"]))
+            .replace("__XLO__", esc(xa["low"])).replace("__XHI__", esc(xa["high"]))
+            .replace("__YLO__", esc(ya["low"])).replace("__YHI__", esc(ya["high"]))
+            .replace("__N__", str(len(data))))
+
+
 def render(root: Path, out: Path):
     rows, state, scanlog, landscape, digest = load(root)
     run_date = state.get("last_run", date.today().isoformat())
@@ -71,6 +153,7 @@ def render(root: Path, out: Path):
     new_domains = {r["domain"] for r in new_rows}
     threats = threat_top5(landscape)
     notes = latest_scan_notes(scanlog)
+    map_html = competitive_map_html(rows, root)
 
     digest_html = ""
     dm = re.search(r"^## (\d{4}-\d{2}-\d{2}) — digest.*?(?=^## \d{4}|\Z)", digest, re.M | re.S)
@@ -187,6 +270,8 @@ td.what {{ max-width:430px; }}
 
 <h2>Current threat assessment — top 5</h2>
 <ol class="threats">{threat_html}</ol>
+
+{map_html}
 
 <h2>Full registry</h2>
 <div class="controls">
