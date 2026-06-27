@@ -16,6 +16,8 @@ Astell (astell.space) = an intelligence layer over a company's tools. Ingests co
 
 `direct` | `chief-of-staff` | `data-intel` | `incumbent` | `employee-assist` | `infra` | `vertical`
 
+The machine source of truth is `config/clusters.json` — `validate_merge.py` reads it to accept/reject rows. Keep this list in step with that file (edit config, never the Python).
+
 ## Calibration examples
 
 - **Glean** → Tier 1 / direct. Cross-SaaS search + agents is the whole product.
