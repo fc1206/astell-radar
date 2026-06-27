@@ -1,0 +1,12 @@
+{
+  "_doc": "The valid competitive clusters for Astell's market — the single source of truth. validate_merge.py reads this to accept/reject candidate rows, so the radar is retargeted by editing THIS file (never any Python). Keep config/rubric.md and config/axes.json cluster keys in step.",
+  "clusters": [
+    "direct",
+    "chief-of-staff",
+    "data-intel",
+    "incumbent",
+    "employee-assist",
+    "infra",
+    "vertical"
+  ]
+}
